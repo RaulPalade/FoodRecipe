@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+struct AppUser: Identifiable, Decodable {
+    let id: String
+    let name: String
+    let about: String
+    let imageUrl: String
+    let favouriteRecipes: [String]
+    let country: [String: String]
+}

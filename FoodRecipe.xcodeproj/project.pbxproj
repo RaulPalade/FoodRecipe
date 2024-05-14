@@ -14,6 +14,18 @@
 		75C4F7F52BF369C200DD7B0E /* FoodRecipeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C4F7F42BF369C200DD7B0E /* FoodRecipeTests.swift */; };
 		75C4F7FF2BF369C200DD7B0E /* FoodRecipeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C4F7FE2BF369C200DD7B0E /* FoodRecipeUITests.swift */; };
 		75C4F8012BF369C200DD7B0E /* FoodRecipeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C4F8002BF369C200DD7B0E /* FoodRecipeUITestsLaunchTests.swift */; };
+		75C4F80E2BF36BF500DD7B0E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75C4F80D2BF36BF500DD7B0E /* GoogleService-Info.plist */; };
+		75C4F8112BF36C5A00DD7B0E /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 75C4F8102BF36C5A00DD7B0E /* FirebaseAnalytics */; };
+		75C4F8132BF36C5A00DD7B0E /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 75C4F8122BF36C5A00DD7B0E /* FirebaseAnalyticsOnDeviceConversion */; };
+		75C4F8152BF36C5A00DD7B0E /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 75C4F8142BF36C5A00DD7B0E /* FirebaseAnalyticsSwift */; };
+		75C4F8172BF36C5A00DD7B0E /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 75C4F8162BF36C5A00DD7B0E /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		75C4F8192BF36C5A00DD7B0E /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 75C4F8182BF36C5A00DD7B0E /* FirebaseAppCheck */; };
+		75C4F81C2BF3A3D000DD7B0E /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C4F81B2BF3A3D000DD7B0E /* AppUser.swift */; };
+		75C4F81E2BF3A47900DD7B0E /* FoodCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C4F81D2BF3A47900DD7B0E /* FoodCategory.swift */; };
+		75C4F8202BF3A4B200DD7B0E /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C4F81F2BF3A4B200DD7B0E /* Ingredient.swift */; };
+		75C4F8222BF3A4FA00DD7B0E /* IngredientCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C4F8212BF3A4FA00DD7B0E /* IngredientCategory.swift */; };
+		75C4F8242BF3A52E00DD7B0E /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C4F8232BF3A52E00DD7B0E /* Recipe.swift */; };
+		75C4F8262BF3AAD000DD7B0E /* Nutrition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C4F8252BF3AAD000DD7B0E /* Nutrition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +56,13 @@
 		75C4F7FA2BF369C200DD7B0E /* FoodRecipeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodRecipeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		75C4F7FE2BF369C200DD7B0E /* FoodRecipeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodRecipeUITests.swift; sourceTree = "<group>"; };
 		75C4F8002BF369C200DD7B0E /* FoodRecipeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodRecipeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		75C4F80D2BF36BF500DD7B0E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		75C4F81B2BF3A3D000DD7B0E /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
+		75C4F81D2BF3A47900DD7B0E /* FoodCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCategory.swift; sourceTree = "<group>"; };
+		75C4F81F2BF3A4B200DD7B0E /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		75C4F8212BF3A4FA00DD7B0E /* IngredientCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCategory.swift; sourceTree = "<group>"; };
+		75C4F8232BF3A52E00DD7B0E /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		75C4F8252BF3AAD000DD7B0E /* Nutrition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutrition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +70,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75C4F8152BF36C5A00DD7B0E /* FirebaseAnalyticsSwift in Frameworks */,
+				75C4F8112BF36C5A00DD7B0E /* FirebaseAnalytics in Frameworks */,
+				75C4F8132BF36C5A00DD7B0E /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
+				75C4F8192BF36C5A00DD7B0E /* FirebaseAppCheck in Frameworks */,
+				75C4F8172BF36C5A00DD7B0E /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +118,8 @@
 		75C4F7E22BF369C100DD7B0E /* FoodRecipe */ = {
 			isa = PBXGroup;
 			children = (
+				75C4F81A2BF3A21900DD7B0E /* Models */,
+				75C4F80D2BF36BF500DD7B0E /* GoogleService-Info.plist */,
 				75C4F7E32BF369C100DD7B0E /* FoodRecipeApp.swift */,
 				75C4F7E52BF369C100DD7B0E /* ContentView.swift */,
 				75C4F7E72BF369C200DD7B0E /* Assets.xcassets */,
@@ -127,6 +153,19 @@
 			path = FoodRecipeUITests;
 			sourceTree = "<group>";
 		};
+		75C4F81A2BF3A21900DD7B0E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				75C4F81B2BF3A3D000DD7B0E /* AppUser.swift */,
+				75C4F81D2BF3A47900DD7B0E /* FoodCategory.swift */,
+				75C4F81F2BF3A4B200DD7B0E /* Ingredient.swift */,
+				75C4F8212BF3A4FA00DD7B0E /* IngredientCategory.swift */,
+				75C4F8232BF3A52E00DD7B0E /* Recipe.swift */,
+				75C4F8252BF3AAD000DD7B0E /* Nutrition.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +182,13 @@
 			dependencies = (
 			);
 			name = FoodRecipe;
+			packageProductDependencies = (
+				75C4F8102BF36C5A00DD7B0E /* FirebaseAnalytics */,
+				75C4F8122BF36C5A00DD7B0E /* FirebaseAnalyticsOnDeviceConversion */,
+				75C4F8142BF36C5A00DD7B0E /* FirebaseAnalyticsSwift */,
+				75C4F8162BF36C5A00DD7B0E /* FirebaseAnalyticsWithoutAdIdSupport */,
+				75C4F8182BF36C5A00DD7B0E /* FirebaseAppCheck */,
+			);
 			productName = FoodRecipe;
 			productReference = 75C4F7E02BF369C100DD7B0E /* FoodRecipe.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +261,9 @@
 				Base,
 			);
 			mainGroup = 75C4F7D72BF369C100DD7B0E;
+			packageReferences = (
+				75C4F80F2BF36C5A00DD7B0E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 75C4F7E12BF369C100DD7B0E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -233,6 +282,7 @@
 			files = (
 				75C4F7EB2BF369C200DD7B0E /* Preview Assets.xcassets in Resources */,
 				75C4F7E82BF369C200DD7B0E /* Assets.xcassets in Resources */,
+				75C4F80E2BF36BF500DD7B0E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,7 +308,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				75C4F7E62BF369C100DD7B0E /* ContentView.swift in Sources */,
+				75C4F81C2BF3A3D000DD7B0E /* AppUser.swift in Sources */,
+				75C4F8242BF3A52E00DD7B0E /* Recipe.swift in Sources */,
+				75C4F8222BF3A4FA00DD7B0E /* IngredientCategory.swift in Sources */,
+				75C4F8202BF3A4B200DD7B0E /* Ingredient.swift in Sources */,
 				75C4F7E42BF369C100DD7B0E /* FoodRecipeApp.swift in Sources */,
+				75C4F8262BF3AAD000DD7B0E /* Nutrition.swift in Sources */,
+				75C4F81E2BF3A47900DD7B0E /* FoodCategory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +644,45 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		75C4F80F2BF36C5A00DD7B0E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.26.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		75C4F8102BF36C5A00DD7B0E /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75C4F80F2BF36C5A00DD7B0E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		75C4F8122BF36C5A00DD7B0E /* FirebaseAnalyticsOnDeviceConversion */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75C4F80F2BF36C5A00DD7B0E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsOnDeviceConversion;
+		};
+		75C4F8142BF36C5A00DD7B0E /* FirebaseAnalyticsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75C4F80F2BF36C5A00DD7B0E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
+		};
+		75C4F8162BF36C5A00DD7B0E /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75C4F80F2BF36C5A00DD7B0E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		75C4F8182BF36C5A00DD7B0E /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75C4F80F2BF36C5A00DD7B0E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 75C4F7D82BF369C100DD7B0E /* Project object */;
 }

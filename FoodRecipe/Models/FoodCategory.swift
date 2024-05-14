@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct FoodCategory: Identifiable, Decodable {
+    let id: String
+    let name: String
+    let imageUrl: String
+}
