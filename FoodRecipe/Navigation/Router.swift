@@ -7,12 +7,10 @@
 
 import SwiftUI
 
-struct Router: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+final class Router: ObservableObject {
+    
+    public enum Destination: Codable, Hashable {
+        case livingroom
+        case
     }
-}
-
-#Preview {
-    Router()
 }
