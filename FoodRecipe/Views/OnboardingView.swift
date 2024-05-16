@@ -8,13 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct LoginView: View {
-    @StateObject var authViewModel = AuthViewModel()
-    @State private var email = ""
-    @State private var password = ""
-    @State private var shouldNavigateToLogin = false
-    @State private var shouldNavigateToRegister = false
-
+struct OnboardingView: View {
     var body: some View {
         NavigationView {
             VStack {
@@ -41,24 +35,32 @@ struct LoginView: View {
                     .bold()
 
                 VStack {
-                    Button(action: signIn) {
-                        Text("Login")
-                            .font(.custom("Cabin-Regular", size: 18))
-                            .bold()
-                            .padding(.vertical, 18)
-                            .frame(maxWidth: .infinity)
+                    NavigationLink {
+                        LoginView()
+                    } label: {
+                        HStack(spacing: 4) {
+                            Text("Go to login")
+                                .font(.custom("Cabin-Regular", size: 18))
+                                .bold()
+                                .padding(.vertical, 18)
+                                .frame(maxWidth: .infinity)
+                        }
                     }
                     .buttonStyle(.borderedProminent)
                     .tint(Color("ButtonColor"))
                     .padding(.horizontal, 24)
                     .foregroundColor(.white)
 
-                    Button(action: register) {
-                        Text("Create new account")
-                            .font(.custom("Cabin-Regular", size: 18))
-                            .bold()
-                            .padding(.vertical, 18)
-                            .frame(maxWidth: .infinity)
+                    NavigationLink {
+                        LoginView()
+                    } label: {
+                        HStack(spacing: 4) {
+                            Text("Create new account")
+                                .font(.custom("Cabin-Regular", size: 18))
+                                .bold()
+                                .padding(.vertical, 18)
+                                .frame(maxWidth: .infinity)
+                        }
                     }
                     .buttonStyle(.borderless)
                     .padding(.horizontal, 24)
@@ -71,29 +73,9 @@ struct LoginView: View {
             .edgesIgnoringSafeArea(.all)
             .background(Color("AppPrimaryColor"))
         }
-        .navigationDestination(
-            isPresented: $shouldNavigateToLogin) {
-                MainView()
-        }
-        .navigationDestination(
-            isPresented: $shouldNavigateToRegister) {
-                MainView()
-        }
-    }
-
-    func signIn() {
-        authViewModel.login(email: "raul@mail.com", password: "password")
-
-        if authViewModel.authState == .signedIn {
-            shouldNavigateToLogin = true
-        }
-    }
-
-    func register() {
-        shouldNavigateToRegister = true
     }
 }
 
 #Preview {
-    LoginView()
+    OnboardingView()
 }

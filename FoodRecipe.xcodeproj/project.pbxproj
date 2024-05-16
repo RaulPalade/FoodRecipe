@@ -32,9 +32,12 @@
 		7590C7012BF4A3AF003F5F5C /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 7590C7002BF4A3AF003F5F5C /* FirebaseStorageCombine-Community */; };
 		7590C7032BF4A3AF003F5F5C /* FirebaseVertexAI-Preview in Frameworks */ = {isa = PBXBuildFile; productRef = 7590C7022BF4A3AF003F5F5C /* FirebaseVertexAI-Preview */; };
 		7590C7052BF4F630003F5F5C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7590C7042BF4F630003F5F5C /* MainView.swift */; };
-		7590C7072BF4F684003F5F5C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7590C7062BF4F684003F5F5C /* LoginView.swift */; };
+		7590C7072BF4F684003F5F5C /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7590C7062BF4F684003F5F5C /* OnboardingView.swift */; };
 		7590C73B2BF5087A003F5F5C /* Cabin-Italic-Variable.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7590C7392BF5087A003F5F5C /* Cabin-Italic-Variable.ttf */; };
 		7590C73C2BF5087A003F5F5C /* Cabin-VariableFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7590C73A2BF5087A003F5F5C /* Cabin-VariableFont.ttf */; };
+		75B80BB12BF61D5C00889D8D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B80BB02BF61D5C00889D8D /* LoginView.swift */; };
+		75B80BB32BF652AE00889D8D /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B80BB22BF652AE00889D8D /* RegisterView.swift */; };
+		75B80BB52BF652B800889D8D /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B80BB42BF652B800889D8D /* ForgotPasswordView.swift */; };
 		75C4F7E42BF369C100DD7B0E /* FoodRecipeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C4F7E32BF369C100DD7B0E /* FoodRecipeApp.swift */; };
 		75C4F7E62BF369C100DD7B0E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C4F7E52BF369C100DD7B0E /* ContentView.swift */; };
 		75C4F7E82BF369C200DD7B0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75C4F7E72BF369C200DD7B0E /* Assets.xcassets */; };
@@ -76,10 +79,13 @@
 /* Begin PBXFileReference section */
 		7590C6D32BF4A1F3003F5F5C /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		7590C7042BF4F630003F5F5C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		7590C7062BF4F684003F5F5C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		7590C7062BF4F684003F5F5C /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		7590C7392BF5087A003F5F5C /* Cabin-Italic-Variable.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cabin-Italic-Variable.ttf"; path = "../../../../../Downloads/Cabin/Cabin-Italic-Variable.ttf"; sourceTree = "<group>"; };
 		7590C73A2BF5087A003F5F5C /* Cabin-VariableFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cabin-VariableFont.ttf"; path = "../../../../../Downloads/Cabin/Cabin-VariableFont.ttf"; sourceTree = "<group>"; };
 		7590C73D2BF50A1F003F5F5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75B80BB02BF61D5C00889D8D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		75B80BB22BF652AE00889D8D /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		75B80BB42BF652B800889D8D /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		75C4F7E02BF369C100DD7B0E /* FoodRecipe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodRecipe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75C4F7E32BF369C100DD7B0E /* FoodRecipeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodRecipeApp.swift; sourceTree = "<group>"; };
 		75C4F7E52BF369C100DD7B0E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -179,10 +185,21 @@
 		7590C73E2BF53E0E003F5F5C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				75B80BAE2BF61B2C00889D8D /* Auth */,
 				7590C7042BF4F630003F5F5C /* MainView.swift */,
-				7590C7062BF4F684003F5F5C /* LoginView.swift */,
+				7590C7062BF4F684003F5F5C /* OnboardingView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		75B80BAE2BF61B2C00889D8D /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				75B80BB02BF61D5C00889D8D /* LoginView.swift */,
+				75B80BB22BF652AE00889D8D /* RegisterView.swift */,
+				75B80BB42BF652B800889D8D /* ForgotPasswordView.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		75C4F7D72BF369C100DD7B0E = {
@@ -429,13 +446,16 @@
 			files = (
 				75C4F7E62BF369C100DD7B0E /* ContentView.swift in Sources */,
 				75C4F81C2BF3A3D000DD7B0E /* AppUser.swift in Sources */,
+				75B80BB32BF652AE00889D8D /* RegisterView.swift in Sources */,
 				75C4F8242BF3A52E00DD7B0E /* Recipe.swift in Sources */,
 				7590C7052BF4F630003F5F5C /* MainView.swift in Sources */,
 				7590C6D42BF4A1F3003F5F5C /* AuthViewModel.swift in Sources */,
 				75C4F8222BF3A4FA00DD7B0E /* IngredientCategory.swift in Sources */,
+				75B80BB12BF61D5C00889D8D /* LoginView.swift in Sources */,
+				75B80BB52BF652B800889D8D /* ForgotPasswordView.swift in Sources */,
 				75C4F8202BF3A4B200DD7B0E /* Ingredient.swift in Sources */,
 				75C4F7E42BF369C100DD7B0E /* FoodRecipeApp.swift in Sources */,
-				7590C7072BF4F684003F5F5C /* LoginView.swift in Sources */,
+				7590C7072BF4F684003F5F5C /* OnboardingView.swift in Sources */,
 				75C4F8262BF3AAD000DD7B0E /* Nutrition.swift in Sources */,
 				75C4F81E2BF3A47900DD7B0E /* FoodCategory.swift in Sources */,
 			);

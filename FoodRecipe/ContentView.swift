@@ -16,7 +16,7 @@ struct ContentView: View {
                 MainView()
             } else {
                 NavigationView {
-                    LoginView()
+                    OnboardingView()
                 }
             }
         }
