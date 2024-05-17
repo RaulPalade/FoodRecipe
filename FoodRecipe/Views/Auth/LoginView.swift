@@ -50,7 +50,10 @@ struct LoginView: View {
                     VStack(spacing: 24) {
                         CustomTextField(placeholder: "Email", text: $email)
                         VStack {
-                            PasswordTextField(text: $password, isSecure: isSecure, toggleAction: { isSecure.toggle() })
+                            PasswordTextField(text: $password, isSecure: $isSecure, toggleAction: { 
+                                isSecure.toggle()
+                                print("isSECURE: \(isSecure)")
+                            })
                             HStack {
                                 Spacer()
                                 NavigationLink {

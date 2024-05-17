@@ -13,6 +13,7 @@ struct CustomTextField: View {
 
     var body: some View {
         TextField(placeholder, text: $text)
+            .autocapitalization(.none)
             .padding(.all, 24)
             .foregroundColor(Color("ButtonColor"))
             .background(Color("AppLabelColor"))

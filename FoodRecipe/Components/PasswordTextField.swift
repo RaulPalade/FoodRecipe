@@ -9,15 +9,17 @@ import SwiftUI
 
 struct PasswordTextField: View {
     @Binding var text: String
-    @State var isSecure: Bool
+    @Binding var isSecure: Bool
     var toggleAction: () -> Void
 
     var body: some View {
         HStack {
             if isSecure {
                 SecureField("Password", text: $text)
+                    .autocapitalization(.none)
             } else {
                 TextField("Password", text: $text)
+                    .autocapitalization(.none)
             }
             Button(action: toggleAction) {
                 Image(systemName: isSecure ? "eye.slash.fill" : "eye.fill")
@@ -31,6 +33,6 @@ struct PasswordTextField: View {
 }
 
 #Preview {
-    PasswordTextField(text: .constant(""), isSecure: true) {
+    PasswordTextField(text: .constant(""), isSecure: .constant(true)) {
     }
 }

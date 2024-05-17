@@ -10,61 +10,60 @@ import SwiftUI
 struct ForgotPasswordView: View {
     @ObservedObject var authViewModel = AuthViewModel()
     @State private var email = ""
-    @State private var isResettingPassword = false
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
-        NavigationView {
-            ZStack {
-                GeometryReader { geometry in
-                    VStack {
-                        Spacer()
-                        Image("bottom")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: geometry.size.width)
-                    }
-                }
+        ZStack {
+            GeometryReader { geometry in
                 VStack {
                     Spacer()
-                    Image("logo")
+                    Image("bottom")
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 120, height: 120)
-                    VStack(spacing: 12) {
-                        Text("Restore password")
-                            .font(.custom("Cabin-Regular", size: 26))
-                            .padding([.leading, .trailing], 16)
-                            .foregroundColor(Color("ButtonColor"))
-                            .multilineTextAlignment(.center)
-                            .bold()
-                        Text("Enter your email to receive a reset link")
-                            .font(.custom("Cabin-Regular", size: 16))
-                            .padding([.leading, .trailing], 16)
-                            .foregroundColor(Color("ButtonColor"))
-                            .multilineTextAlignment(.center)
-                    }
-                    .padding(.bottom, 20)
-
-                    VStack(spacing: 24) {
-                        CustomTextField(placeholder: "Email", text: $email)
-                        DarkButton(text: "Reset password", action: resetPassword)
-                    }
-                    .padding([.horizontal], 24)
-                    .padding(.bottom, 40)
-                    Spacer()
+                        .scaledToFit()
+                        .frame(width: geometry.size.width)
                 }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .ignoresSafeArea(.all)
+            VStack {
+                Spacer()
+                Image("logo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 120, height: 120)
+                VStack(spacing: 12) {
+                    Text("Restore password")
+                        .font(.custom("Cabin-Regular", size: 26))
+                        .padding([.leading, .trailing], 16)
+                        .foregroundColor(Color("ButtonColor"))
+                        .multilineTextAlignment(.center)
+                        .bold()
+                    Text("Enter your email to receive a reset link")
+                        .font(.custom("Cabin-Regular", size: 16))
+                        .padding([.leading, .trailing], 16)
+                        .foregroundColor(Color("ButtonColor"))
+                        .multilineTextAlignment(.center)
+                }
+                .padding(.bottom, 20)
+
+                VStack(spacing: 24) {
+                    CustomTextField(placeholder: "Email", text: $email)
+                    DarkButton(text: "Reset password", action: resetPassword)
+                }
+                .padding([.horizontal], 24)
+                .padding(.bottom, 40)
+                Spacer()
+            }
         }
-        .navigationDestination(isPresented: $isResettingPassword) {
-            MainView()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .ignoresSafeArea(.all)
+        .onReceive(authViewModel.$resetPasswordSuccess) { success in
+            if success {
+                presentationMode.wrappedValue.dismiss()
+            }
         }
     }
 
     func resetPassword() {
         authViewModel.resetPassword(email: email)
-        isResettingPassword = true
     }
 }
 
