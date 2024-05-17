@@ -8,11 +8,23 @@
 import SwiftUI
 
 struct DarkButton: View {
+    var text: String
+    var action: () -> Void
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button(action: action) {
+            Text(text)
+                .font(.custom("Cabin-Regular", size: 18))
+                .bold()
+                .padding(.vertical, 18)
+                .frame(maxWidth: .infinity)
+        }
+        .buttonStyle(.borderedProminent)
+        .tint(Color("ButtonColor"))
+        .foregroundColor(.white)
     }
 }
 
 #Preview {
-    DarkButton()
+    DarkButton(text: "Click", action: { })
 }

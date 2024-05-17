@@ -48,28 +48,9 @@ struct LoginView: View {
                     .padding(.bottom, 20)
 
                     VStack(spacing: 24) {
-                        TextField("Email", text: $email)
-                            .padding(.all, 24)
-                            .foregroundColor(Color("ButtonColor"))
-                            .background(Color("AppLabelColor"))
-                            .clipShape(RoundedRectangle(cornerRadius: 16))
+                        CustomTextField(placeholder: "Email", text: $email)
                         VStack {
-                            HStack {
-                                if isSecure {
-                                    SecureField("Password", text: $password)
-                                } else {
-                                    TextField("Password", text: $password)
-                                }
-                                Button(action: {
-                                    isSecure.toggle()
-                                }) {
-                                    Image(systemName: isSecure ? "eye.slash.fill" : "eye.fill")
-                                        .foregroundColor(Color("ButtonColor"))
-                                }
-                            }
-                            .padding(.all, 24)
-                            .background(Color("AppLabelColor"))
-                            .clipShape(RoundedRectangle(cornerRadius: 16))
+                            PasswordTextField(text: $password, isSecure: isSecure, toggleAction: { isSecure.toggle() })
                             HStack {
                                 Spacer()
                                 NavigationLink {
@@ -77,7 +58,7 @@ struct LoginView: View {
                                 } label: {
                                     HStack(spacing: 4) {
                                         Text("Forgot Password?")
-                                            .font(.custom("Cabin-Regular", size: 18))
+                                            .font(.custom("Cabin-Regular", size: 16))
                                             .bold()
                                             .foregroundColor(Color("ButtonColor"))
                                             .padding(.vertical, 18)
@@ -88,16 +69,7 @@ struct LoginView: View {
                             }
                         }
                         VStack {
-                            Button(action: signIn) {
-                                Text("Login")
-                                    .font(.custom("Cabin-Regular", size: 18))
-                                    .bold()
-                                    .padding(.vertical, 18)
-                                    .frame(maxWidth: .infinity)
-                            }
-                            .buttonStyle(.borderedProminent)
-                            .tint(Color("ButtonColor"))
-                            .foregroundColor(.white)
+                            DarkButton(text: "Login", action: signIn)
                             HStack {
                                 Text("Don't have an account?")
                                     .font(.custom("Cabin-Regular", size: 16))

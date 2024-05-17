@@ -39,6 +39,9 @@
 		75B80BB32BF652AE00889D8D /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B80BB22BF652AE00889D8D /* RegisterView.swift */; };
 		75B80BB52BF652B800889D8D /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B80BB42BF652B800889D8D /* ForgotPasswordView.swift */; };
 		75C1DA8F2BF745E000425D83 /* Logo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C1DA8E2BF745E000425D83 /* Logo.swift */; };
+		75C1DA922BF76A5600425D83 /* DarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C1DA912BF76A5600425D83 /* DarkButton.swift */; };
+		75C1DA942BF76DC200425D83 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C1DA932BF76DC200425D83 /* CustomTextField.swift */; };
+		75C1DA962BF76FCF00425D83 /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C1DA952BF76FCF00425D83 /* PasswordTextField.swift */; };
 		75C4F7E42BF369C100DD7B0E /* FoodRecipeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C4F7E32BF369C100DD7B0E /* FoodRecipeApp.swift */; };
 		75C4F7E62BF369C100DD7B0E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C4F7E52BF369C100DD7B0E /* ContentView.swift */; };
 		75C4F7E82BF369C200DD7B0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75C4F7E72BF369C200DD7B0E /* Assets.xcassets */; };
@@ -89,6 +92,9 @@
 		75B80BB22BF652AE00889D8D /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		75B80BB42BF652B800889D8D /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		75C1DA8E2BF745E000425D83 /* Logo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logo.swift; sourceTree = "<group>"; };
+		75C1DA912BF76A5600425D83 /* DarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkButton.swift; sourceTree = "<group>"; };
+		75C1DA932BF76DC200425D83 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		75C1DA952BF76FCF00425D83 /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
 		75C4F7E02BF369C100DD7B0E /* FoodRecipe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodRecipe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75C4F7E32BF369C100DD7B0E /* FoodRecipeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodRecipeApp.swift; sourceTree = "<group>"; };
 		75C4F7E52BF369C100DD7B0E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -215,6 +221,16 @@
 			path = SvgShapes;
 			sourceTree = "<group>";
 		};
+		75C1DA902BF76A4200425D83 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				75C1DA912BF76A5600425D83 /* DarkButton.swift */,
+				75C1DA932BF76DC200425D83 /* CustomTextField.swift */,
+				75C1DA952BF76FCF00425D83 /* PasswordTextField.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		75C4F7D72BF369C100DD7B0E = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +255,7 @@
 		75C4F7E22BF369C100DD7B0E /* FoodRecipe */ = {
 			isa = PBXGroup;
 			children = (
+				75C1DA902BF76A4200425D83 /* Components */,
 				75C1DA8D2BF745CE00425D83 /* SvgShapes */,
 				75C4F7E72BF369C200DD7B0E /* Assets.xcassets */,
 				7590C7082BF50827003F5F5C /* fonts */,
@@ -466,12 +483,15 @@
 				7590C7052BF4F630003F5F5C /* MainView.swift in Sources */,
 				75C1DA8F2BF745E000425D83 /* Logo.swift in Sources */,
 				7590C6D42BF4A1F3003F5F5C /* AuthViewModel.swift in Sources */,
+				75C1DA962BF76FCF00425D83 /* PasswordTextField.swift in Sources */,
 				75C4F8222BF3A4FA00DD7B0E /* IngredientCategory.swift in Sources */,
+				75C1DA922BF76A5600425D83 /* DarkButton.swift in Sources */,
 				75B80BB12BF61D5C00889D8D /* LoginView.swift in Sources */,
 				75B80BB52BF652B800889D8D /* ForgotPasswordView.swift in Sources */,
 				75C4F8202BF3A4B200DD7B0E /* Ingredient.swift in Sources */,
 				75C4F7E42BF369C100DD7B0E /* FoodRecipeApp.swift in Sources */,
 				7590C7072BF4F684003F5F5C /* OnboardingView.swift in Sources */,
+				75C1DA942BF76DC200425D83 /* CustomTextField.swift in Sources */,
 				75C4F8262BF3AAD000DD7B0E /* Nutrition.swift in Sources */,
 				75C4F81E2BF3A47900DD7B0E /* FoodCategory.swift in Sources */,
 			);

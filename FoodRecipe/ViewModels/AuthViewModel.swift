@@ -17,6 +17,7 @@ class AuthViewModel: ObservableObject {
 
     @Published var authState: AuthState = .signedOut
     @Published var loginError: Error? = nil
+    @Published var resetPasswordError: Error? = nil
     private var cancellables = Set<AnyCancellable>()
 
     init() {
@@ -50,6 +51,17 @@ class AuthViewModel: ObservableObject {
             authState = .signedOut
         } catch {
             print("Errore durante il logout:", error.localizedDescription)
+        }
+    }
+    
+    func resetPassword(email: String) {
+        Auth.auth().sendPasswordReset(withEmail: email) { error in
+            if let error = error {
+                print("Errore durante il reset della password", error.localizedDescription)
+                self.resetPasswordError = error
+                return
+            }
+            print("Email per il reset della password inviata")
         }
     }
 }

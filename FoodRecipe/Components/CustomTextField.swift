@@ -12,7 +12,7 @@ struct CustomTextField: View {
     @Binding var text: String
 
     var body: some View {
-        TextField(placeholder: placeholder, text: $text)
+        TextField(placeholder, text: $text)
             .padding(.all, 24)
             .foregroundColor(Color("ButtonColor"))
             .background(Color("AppLabelColor"))
@@ -21,5 +21,5 @@ struct CustomTextField: View {
 }
 
 #Preview {
-    TextField(placeholder: "Email", text: .constant(""))
+    CustomTextField(placeholder: "Email", text: .constant(""))
 }
