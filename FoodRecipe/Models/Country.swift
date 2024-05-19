@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+struct Country: Identifiable, Decodable, Hashable {
+    var id: Int
+    var name: String
+    var isoAlpha2: String
+    var flag: String
+}

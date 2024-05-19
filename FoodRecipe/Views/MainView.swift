@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
-    @StateObject var authViewModel = AuthViewModel()
+    @ObservedObject var authViewModel = AuthViewModel()
     
     var body: some View {
         NavigationView {

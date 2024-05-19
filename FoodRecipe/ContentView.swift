@@ -8,18 +8,33 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var authViewModel = AuthViewModel()
+    @AppStorage("isOnboarding") var isOnboarding: Bool?
 
     var body: some View {
-        Group {
-            if authViewModel.authState == .signedIn {
-                MainView()
-            } else {
-                NavigationView {
-                    OnboardingView()
+        VStack {
+            Image(systemName: "globe")
+                .imageScale(.large)
+                .foregroundColor(.accentColor)
+            Text("Hello, world!")
+
+            Button(action: {
+                isOnboarding = true
+            }) {
+                HStack(spacing: 8) {
+                    Text("Re-Start")
+
+                    Image(systemName: "arrow.right.circle")
+                        .imageScale(.large)
                 }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 10)
+                .background(
+                    Capsule().strokeBorder(Color.black, lineWidth: 1.25)
+                )
             }
+            .accentColor(Color.black)
         }
+        .padding()
     }
 }
 

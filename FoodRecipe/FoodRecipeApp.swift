@@ -20,10 +20,16 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct FoodRecipeApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @StateObject var authViewModel = AuthViewModel()
+    @AppStorage("isOnboarding") var isOnboarding: Bool = true
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if isOnboarding {
+                OnboardingView()
+            } else {
+                MainView()
+            }
         }
     }
 }
