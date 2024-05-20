@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct OnboardingItem: Identifiable {
+struct OnboardingItem: Identifiable, Hashable {
     var id = UUID()
     var title: String
     var headline: String

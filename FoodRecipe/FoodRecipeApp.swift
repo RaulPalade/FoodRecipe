@@ -28,7 +28,7 @@ struct FoodRecipeApp: App {
             if isOnboarding {
                 OnboardingView()
             } else {
-                MainView()
+                TabScreenView()
             }
         }
     }

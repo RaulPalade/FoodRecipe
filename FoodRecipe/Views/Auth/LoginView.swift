@@ -102,7 +102,7 @@ struct LoginView: View {
             .ignoresSafeArea(.all)
         }
         .navigationDestination(isPresented: $isLoggingIn) {
-            MainView()
+            TabScreenView()
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
