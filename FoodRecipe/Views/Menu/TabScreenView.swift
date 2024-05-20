@@ -7,56 +7,36 @@
 
 import SwiftUI
 
-enum Tab {
-    case home, goals, settings
-}
-
-enum HomeNavigation: Hashable {
-    case recipeDetail
-}
-
 struct TabScreenView: View {
-    @State private var selectedTab: Tab = .home
-    @State private var homeNavigationStack: [HomeNavigation] = []
+    // State property for selected tab - keeps of what tab is selected
+
+    @State private var selectedtab: Tab = .home
+
+    init() {
+        /* when the view is inittialed we need to ensure the main tab view is hidden so only the custom one can be shown */
+        UITabBar.appearance().isHidden = true
+    }
 
     var body: some View {
-        TabView(selection: tabSelection()) {
-            HomeView(path: $homeNavigationStack)
-                .tabItem {
-                    Label("Home", systemImage: "house")
-                }
-                .tag(Tab.home)
+        ZStack(alignment: .bottom) {
+            /* main tab bar - the followign texts can be replaced with whatever view you would like
+             in this example i will include only texts for each of the views. */
 
-            RecipesView()
-                .tabItem {
-                    Label("Recipes", systemImage: "flag")
-                }
-                .tag(Tab.goals)
+            TabView(selection: $selectedtab) {
+                HomeView()
+                    .tabItem { Image(systemName: "house") }
+                    .tag(Tab.home)
 
-            ProfileView()
-                .tabItem {
-                    Label("Profile", systemImage: "gear")
-                }
-                .tag(Tab.settings)
-        }
-    }
-}
+                RecipesView()
+                    .tabItem { Image(systemName: "house") }
+                    .tag(Tab.recipes)
 
-extension TabScreenView {
-    private func tabSelection() -> Binding<Tab> {
-        Binding { // this is the get block
-            self.selectedTab
-        } set: { tappedTab in
-            if tappedTab == self.selectedTab {
-                // User tapped on the tab twice == Pop to root view
-                if homeNavigationStack.isEmpty {
-                    // User already on home view, scroll to top
-                } else {
-                    homeNavigationStack = []
-                }
+                ProfileView()
+                    .tabItem { Image(systemName: "house") }
+                    .tag(Tab.profile)
             }
-            // Set the tab to the tabbed tab
-            self.selectedTab = tappedTab
+
+            CustomTabBarView(selectedTab: $selectedtab)
         }
     }
 }

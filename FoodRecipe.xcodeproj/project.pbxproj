@@ -79,6 +79,8 @@
 		75F984052BFB8C3300FC7808 /* Cabin-Italic-Variable.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 75F984032BFB8C3300FC7808 /* Cabin-Italic-Variable.ttf */; };
 		75F984062BFB8C3300FC7808 /* Cabin-VariableFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 75F984042BFB8C3300FC7808 /* Cabin-VariableFont.ttf */; };
 		75F984082BFB8D3F00FC7808 /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F984072BFB8D3F00FC7808 /* RecipeDetailView.swift */; };
+		75F9840C2BFB962C00FC7808 /* CustomTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F9840B2BFB962C00FC7808 /* CustomTabBarView.swift */; };
+		75F9840E2BFB966500FC7808 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F9840D2BFB966500FC7808 /* Tab.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +147,8 @@
 		75F984032BFB8C3300FC7808 /* Cabin-Italic-Variable.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cabin-Italic-Variable.ttf"; path = "../../../../../Downloads/Cabin/Cabin-Italic-Variable.ttf"; sourceTree = "<group>"; };
 		75F984042BFB8C3300FC7808 /* Cabin-VariableFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cabin-VariableFont.ttf"; path = "../../../../../Downloads/Cabin/Cabin-VariableFont.ttf"; sourceTree = "<group>"; };
 		75F984072BFB8D3F00FC7808 /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
+		75F9840B2BFB962C00FC7808 /* CustomTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarView.swift; sourceTree = "<group>"; };
+		75F9840D2BFB966500FC7808 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -362,6 +366,8 @@
 			isa = PBXGroup;
 			children = (
 				75F983F92BFB81C900FC7808 /* TabScreenView.swift */,
+				75F9840B2BFB962C00FC7808 /* CustomTabBarView.swift */,
+				75F9840D2BFB966500FC7808 /* Tab.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -557,11 +563,13 @@
 				75C1DA922BF76A5600425D83 /* DarkButton.swift in Sources */,
 				75B80BB12BF61D5C00889D8D /* LoginView.swift in Sources */,
 				75F983FA2BFB81C900FC7808 /* TabScreenView.swift in Sources */,
+				75F9840C2BFB962C00FC7808 /* CustomTabBarView.swift in Sources */,
 				75B80BB52BF652B800889D8D /* ForgotPasswordView.swift in Sources */,
 				75C4F8202BF3A4B200DD7B0E /* Ingredient.swift in Sources */,
 				75C4F7E42BF369C100DD7B0E /* FoodRecipeApp.swift in Sources */,
 				75C1DA9E2BF7C0DC00425D83 /* CountryListRow.swift in Sources */,
 				75F983FE2BFB837B00FC7808 /* ProfileView.swift in Sources */,
+				75F9840E2BFB966500FC7808 /* Tab.swift in Sources */,
 				75287F562BFA5C8B00FA0E23 /* OnboardingItemData.swift in Sources */,
 				75C1DAA92BF7C9A700425D83 /* Extensions.swift in Sources */,
 				7590C7072BF4F684003F5F5C /* OnboardingView.swift in Sources */,
