@@ -8,8 +8,14 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @ObservedObject var authViewModel = AuthViewModel()
+
     var body: some View {
-        Text("Profile View")
+        DarkButton(text: "Logout", action: signOut)
+    }
+
+    func signOut() {
+        authViewModel.logout()
     }
 }
 

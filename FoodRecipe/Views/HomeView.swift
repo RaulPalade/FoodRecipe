@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @ObservedObject var authViewModel = AuthViewModel()
+    @StateObject private var recipeViewModel = RecipeViewModel()
 
     var body: some View {
         NavigationStack {
@@ -43,6 +44,7 @@ struct HomeView: View {
             }
         }
         .padding(.vertical, 12)
+        .environmentObject(recipeViewModel)
     }
 }
 

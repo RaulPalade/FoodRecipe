@@ -13,11 +13,6 @@ struct StartButton: View {
     var body: some View {
         Button(action: {
             isOnboarding = false
-            if let isOnboarding = isOnboarding {
-                print("isOnboarding:", isOnboarding) // Stampa il valore effettivo di isOnboarding
-            } else {
-                print("isOnboarding is nil")
-            }
         }) {
             HStack(spacing: 8) {
                 Text("Start")

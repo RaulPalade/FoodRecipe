@@ -7,8 +7,7 @@
 
 import Foundation
 
-struct Nutrition: Identifiable, Decodable {
-    let id: String
+struct Nutrition: Decodable {
     let calories: Double
     let carb: Double
     let proteins: Double

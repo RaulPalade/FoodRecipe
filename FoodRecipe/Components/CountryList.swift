@@ -28,7 +28,6 @@ struct CountryList: View {
                             isSelected: baseViewModel.countries[index] == selectedCountry
                         ) {
                             selectedCountry = baseViewModel.countries[index]
-                            print(selectedCountry)
                         }
                     }.listRowSeparator(.hidden)
                 }
@@ -59,6 +58,6 @@ let baseViewModel: BaseViewModel = {
     return baseViewModel
 }()
 
-/*#Preview {
-    CountryList(selectedCountry: <#T##Binding<Country?>#>).environmentObject(baseViewModel)
-}*/
+#Preview {
+    CountryList(selectedCountry: .constant(nil)).environmentObject(baseViewModel)
+}

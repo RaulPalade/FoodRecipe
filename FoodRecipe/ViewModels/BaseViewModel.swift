@@ -9,11 +9,11 @@ import Foundation
 
 class BaseViewModel: ObservableObject {
     @Published var countries: [Country] = []
-    
+
     init() {
-       loadCountries()
+        loadCountries()
     }
-    
+
     func loadCountries() {
         if let fileURL = Bundle.main.url(forResource: "countries", withExtension: "json") {
             do {
@@ -22,10 +22,10 @@ class BaseViewModel: ObservableObject {
                 let decodedData = try decoder.decode([Country].self, from: data)
                 countries = decodedData
             } catch {
-                print("Errore durante il caricamento dei dati:", error)
+                print("Error white loading data:", error)
             }
         } else {
-            print("File JSON non trovato")
+            print("File JSON not found")
         }
     }
 }

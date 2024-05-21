@@ -52,7 +52,6 @@ struct LoginView: View {
                         VStack {
                             PasswordTextField(text: $password, isSecure: $isSecure, toggleAction: {
                                 isSecure.toggle()
-                                print("isSECURE: \(isSecure)")
                             })
                             HStack {
                                 Spacer()

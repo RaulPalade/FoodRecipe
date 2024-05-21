@@ -5,14 +5,15 @@
 //  Created by Raul Palade on 14/05/24.
 //
 
+import Firebase
 import FirebaseCore
+import FirebaseFirestore
 import SwiftUI
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         FirebaseApp.configure()
-
         return true
     }
 }
@@ -25,12 +26,14 @@ struct FoodRecipeApp: App {
 
     var body: some Scene {
         WindowGroup {
-            if isOnboarding {
-                OnboardingView()
-            } else if authViewModel.authState == .signedOut {
-                LoginView()
-            } else {
-                TabScreenView()
+            if !authViewModel.isLoading {
+                if isOnboarding {
+                    OnboardingView()
+                } else if authViewModel.authState == .signedOut {
+                    LoginView().environmentObject(authViewModel)
+                } else {
+                    TabScreenView().environmentObject(authViewModel)
+                }
             }
         }
     }

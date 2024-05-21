@@ -16,7 +16,7 @@ struct RegisterView: View {
     @State private var isLoggingIn = false
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 GeometryReader { geometry in
                     VStack {

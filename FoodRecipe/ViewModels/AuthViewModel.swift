@@ -20,27 +20,35 @@ class AuthViewModel: ObservableObject {
     @Published var loginError: Error? = nil
     @Published var resetPasswordError: Error? = nil
     @Published var resetPasswordSuccess: Bool = false
+    @Published var isLoading: Bool = true
     private var cancellables = Set<AnyCancellable>()
 
     init() {
-        Auth.auth().addStateDidChangeListener { _, user in
-            self.authState = user != nil ? .signedIn : .signedOut
-            self.currentUser = user
-        }
+        checkAuthStatus()
 
         $authState
             .sink { authState in
                 if authState == .signedOut {
-                    print("Utente non loggato")
+                    print("User not authenticated ")
+                } else if authState == .signedIn {
+                    print("User authenticated")
                 }
             }
             .store(in: &cancellables)
     }
 
+    func checkAuthStatus() {
+        Auth.auth().addStateDidChangeListener { _, user in
+            self.isLoading = false
+            self.authState = user != nil ? .signedIn : .signedOut
+            self.currentUser = user
+        }
+    }
+
     func login(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             if let error = error {
-                print("Errore durante il login:", error.localizedDescription)
+                print("Error on login:", error.localizedDescription)
                 self.loginError = error
                 return
             }
@@ -54,19 +62,18 @@ class AuthViewModel: ObservableObject {
             try Auth.auth().signOut()
             authState = .signedOut
         } catch {
-            print("Errore durante il logout:", error.localizedDescription)
+            print("Error on logout:", error.localizedDescription)
         }
     }
-    
+
     func resetPassword(email: String) {
         Auth.auth().sendPasswordReset(withEmail: email) { error in
             if let error = error {
-                print("Errore durante il reset della password", error.localizedDescription)
+                print("Error on password reset", error.localizedDescription)
                 self.resetPasswordError = error
                 self.resetPasswordSuccess = false
                 return
             }
-            print("Email per il reset della password inviata")
             self.resetPasswordSuccess = true
         }
     }

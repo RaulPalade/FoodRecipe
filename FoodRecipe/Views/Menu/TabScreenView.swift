@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct TabScreenView: View {
-    // State property for selected tab - keeps of what tab is selected
+    @EnvironmentObject var authViewModel: AuthViewModel
 
+    // State property for selected tab - keeps of what tab is selected
     @State private var selectedtab: Tab = .home
 
     init() {
