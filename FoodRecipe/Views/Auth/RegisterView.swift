@@ -67,8 +67,6 @@ struct RegisterView: View {
         .navigationDestination(isPresented: $isLoggingIn) {
             TabScreenView()
         }
-        .navigationBarBackButtonHidden(true)
-        .navigationBarHidden(true)
     }
 
     func register() {

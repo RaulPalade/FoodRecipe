@@ -27,6 +27,8 @@ struct FoodRecipeApp: App {
         WindowGroup {
             if isOnboarding {
                 OnboardingView()
+            } else if authViewModel.authState == .signedOut {
+                LoginView()
             } else {
                 TabScreenView()
             }

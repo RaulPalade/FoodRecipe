@@ -15,6 +15,7 @@ class AuthViewModel: ObservableObject {
         case signedOut
     }
 
+    @Published var currentUser: User? = nil
     @Published var authState: AuthState = .signedOut
     @Published var loginError: Error? = nil
     @Published var resetPasswordError: Error? = nil
@@ -24,6 +25,7 @@ class AuthViewModel: ObservableObject {
     init() {
         Auth.auth().addStateDidChangeListener { _, user in
             self.authState = user != nil ? .signedIn : .signedOut
+            self.currentUser = user
         }
 
         $authState
@@ -36,13 +38,14 @@ class AuthViewModel: ObservableObject {
     }
 
     func login(email: String, password: String) {
-        Auth.auth().signIn(withEmail: email, password: password) { _, error in
+        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             if let error = error {
                 print("Errore durante il login:", error.localizedDescription)
                 self.loginError = error
                 return
             }
             self.authState = .signedIn
+            self.currentUser = authResult?.user
         }
     }
 

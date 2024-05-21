@@ -41,7 +41,6 @@
 		75B80BB12BF61D5C00889D8D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B80BB02BF61D5C00889D8D /* LoginView.swift */; };
 		75B80BB32BF652AE00889D8D /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B80BB22BF652AE00889D8D /* RegisterView.swift */; };
 		75B80BB52BF652B800889D8D /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B80BB42BF652B800889D8D /* ForgotPasswordView.swift */; };
-		75C1DA8F2BF745E000425D83 /* Logo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C1DA8E2BF745E000425D83 /* Logo.swift */; };
 		75C1DA922BF76A5600425D83 /* DarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C1DA912BF76A5600425D83 /* DarkButton.swift */; };
 		75C1DA942BF76DC200425D83 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C1DA932BF76DC200425D83 /* CustomTextField.swift */; };
 		75C1DA962BF76FCF00425D83 /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C1DA952BF76FCF00425D83 /* PasswordTextField.swift */; };
@@ -113,7 +112,6 @@
 		75B80BB02BF61D5C00889D8D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		75B80BB22BF652AE00889D8D /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		75B80BB42BF652B800889D8D /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
-		75C1DA8E2BF745E000425D83 /* Logo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logo.swift; sourceTree = "<group>"; };
 		75C1DA912BF76A5600425D83 /* DarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkButton.swift; sourceTree = "<group>"; };
 		75C1DA932BF76DC200425D83 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		75C1DA952BF76FCF00425D83 /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
@@ -259,7 +257,6 @@
 			isa = PBXGroup;
 			children = (
 				75D568C02BF69BC200D978CA /* CardView.swift */,
-				75C1DA8E2BF745E000425D83 /* Logo.swift */,
 			);
 			path = SvgShapes;
 			sourceTree = "<group>";
@@ -554,7 +551,6 @@
 				7590C7052BF4F630003F5F5C /* HomeView.swift in Sources */,
 				75C1DAA02BF7C14A00425D83 /* PreviewData.swift in Sources */,
 				75287F5A2BFA5FDE00FA0E23 /* StartButton.swift in Sources */,
-				75C1DA8F2BF745E000425D83 /* Logo.swift in Sources */,
 				7590C6D42BF4A1F3003F5F5C /* AuthViewModel.swift in Sources */,
 				75C1DA982BF7A75B00425D83 /* Country.swift in Sources */,
 				75C1DA962BF76FCF00425D83 /* PasswordTextField.swift in Sources */,
