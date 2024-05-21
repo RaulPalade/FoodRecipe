@@ -13,7 +13,7 @@ struct Recipe: Identifiable, Decodable {
     let name: String
     let description: String
     let category: [String]
-    var ingredients: [RecipeIngredient] = []
+    var ingredients: [RecipeIngredient]
     let instructions: [String]
     let nutrition: Nutrition
     let authorId: String
