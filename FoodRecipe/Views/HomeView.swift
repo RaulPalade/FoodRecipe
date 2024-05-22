@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
-    @ObservedObject var authViewModel = AuthViewModel()
-    @StateObject private var viewModel = ChipViewModel()
-    @StateObject private var recipeViewModel = RecipeViewModel()
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @StateObject private var chipViewModel = ChipViewModel()
+    @EnvironmentObject var recipeViewModel: RecipeViewModel
 
     var body: some View {
         NavigationStack {
@@ -20,9 +20,9 @@ struct HomeView: View {
 
                     VStack(alignment: .leading, content: {
                         SectionHeader(title: "Recipe of the day")
-                        FeaturedCard(title: "Asian white noodle with extra seafood", authorName: "James Spader", time: "20 min")
+                        FeaturedCard(recipe: recipeViewModel.recipes[0])
 
-                    })
+                    }).padding(.top, 24)
 
                     // MARK: Popular Recipes
 
@@ -30,11 +30,29 @@ struct HomeView: View {
                         SectionHeader(title: "Popular Recipes")
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 12) {
-                                ForEach(viewModel.chipArray) { chip in
-                                    ChipButton(titleKey: chip.titleKey, isSelected: chip.isSelected)
+                                ForEach(chipViewModel.chipArray) { chip in
+                                    ChipButton(
+                                        titleKey: chip.titleKey,
+                                        isSelected: Binding<Bool>(
+                                            get: { chipViewModel.isChipSelected(chip) },
+                                            set: { _ in chipViewModel.selectChip(chip) }
+                                        ))
                                 }
                             }
                         }
+                        .padding(.bottom, 8)
+
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 20) {
+                                ForEach(recipeViewModel.recipes) { recipe in
+                                    PopularRecipeCard(
+                                        recipe: recipe,
+                                        favourite: true,
+                                        action: { addRecipeToFavourite(recipeId: recipe.id)
+                                        })
+                                }
+                            }.padding()
+                        }.scrollClipDisabled()
                     })
                 }
                 .padding(.vertical, 12)
@@ -66,6 +84,10 @@ struct HomeView: View {
                 }
             }
         }
+    }
+
+    func addRecipeToFavourite(recipeId: String) {
+        print("Recipe id:", recipeId)
     }
 }
 

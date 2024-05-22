@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ChipButton: View {
     let titleKey: LocalizedStringKey
-    @State var isSelected: Bool
+    @Binding var isSelected: Bool
 
     var body: some View {
         Text(titleKey)
@@ -27,5 +27,5 @@ struct ChipButton: View {
 }
 
 #Preview {
-    ChipButton(titleKey: "Breakfast", isSelected: false)
+    ChipButton(titleKey: "Breakfast", isSelected: .constant(true))
 }

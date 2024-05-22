@@ -10,6 +10,7 @@ import Foundation
 struct AppUser: Identifiable, Decodable {
     let id: String
     let name: String
+    let email: String
     let about: String
     let imageUrl: String
     let favouriteRecipes: [String]

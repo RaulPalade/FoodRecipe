@@ -16,10 +16,16 @@ struct Recipe: Identifiable, Decodable {
     var ingredients: [RecipeIngredient]
     let instructions: [String]
     let nutrition: Nutrition
-    let authorId: String
+    let author: RecipeAuthor
     let rating: Double
     let time: String
     let createdAt: String
+    let imageUrl: String
+}
+
+struct RecipeAuthor: Decodable {
+    let authorId: String
+    let name: String
     let imageUrl: String
 }
 

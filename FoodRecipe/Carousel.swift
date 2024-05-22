@@ -131,7 +131,7 @@ struct FullscreenCarouselView<Content: View, ItemData: Identifiable>: View {
         zoomFactor: 0.72
     ) { itemData in
         VStack {
-            FeaturedCard(title: itemData.name, authorName: "Bruno Barbieri", time: itemData.time)
+            FeaturedCard(recipe: <#Recipe#>, title: itemData.name, authorName: "Bruno Barbieri", time: itemData.time)
         }
     }
 }

@@ -15,6 +15,7 @@ class RecipeViewModel: ObservableObject {
 
     @Published var recipes: [Recipe] = []
     @Published var errorMessage: String? = nil
+    @Published var isLoading: Bool = true
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -47,6 +48,7 @@ class RecipeViewModel: ObservableObject {
                 }
             } receiveValue: { recipes in
                 self.recipes = recipes
+                self.isLoading = false
             }
             .store(in: &cancellables)
     }
@@ -65,7 +67,7 @@ class RecipeViewModel: ObservableObject {
                let category = data["category"] as? [String],
                let instructions = data["instructions"] as? [String],
                let nutritionData = data["nutrition"] as? [String: Double],
-               let authorId = data["authorId"] as? String,
+               let authorData = data["author"] as? [String: String],
                let rating = data["rating"] as? Double,
                let time = data["time"] as? String,
                let imageUrl = data["imageUrl"] as? String,
@@ -77,6 +79,12 @@ class RecipeViewModel: ObservableObject {
                     fats: nutritionData["fats"] ?? 0
                 )
 
+                let author = RecipeAuthor(
+                    authorId: authorData["authorId"] ?? "",
+                    name: authorData["name"] ?? "",
+                    imageUrl: authorData["imageUrl"] ?? ""
+                )
+
                 var recipe = Recipe(
                     id: documentID,
                     name: name,
@@ -85,7 +93,7 @@ class RecipeViewModel: ObservableObject {
                     ingredients: [],
                     instructions: instructions,
                     nutrition: nutrition,
-                    authorId: authorId,
+                    author: author,
                     rating: rating,
                     time: time,
                     createdAt: createdAt,

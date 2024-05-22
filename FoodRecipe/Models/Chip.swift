@@ -12,5 +12,4 @@ import SwiftUI
 struct Chip: Identifiable {
     let id = UUID()
     let titleKey: LocalizedStringKey
-    @State var isSelected: Bool
 }
