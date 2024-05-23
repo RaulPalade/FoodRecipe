@@ -72,7 +72,13 @@ struct HomeView: View {
                                         .multilineTextAlignment(.center)
                                 }
                                 if let user = authViewModel.currentUser {
-                                    Text(user.email ?? "")
+                                    Text(user.name)
+                                        .font(.custom("Cabin-Regular", size: 24))
+                                        .foregroundColor(Color("ButtonColor"))
+                                        .multilineTextAlignment(.center)
+                                        .bold()
+                                } else {
+                                    Text("user.name")
                                         .font(.custom("Cabin-Regular", size: 24))
                                         .foregroundColor(Color("ButtonColor"))
                                         .multilineTextAlignment(.center)

@@ -23,12 +23,12 @@ struct FoodRecipeApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject var authViewModel = AuthViewModel()
     @StateObject var recipeViewModel = RecipeViewModel()
-    @StateObject var userViewModel = UserViewModel()
+    //@StateObject var userViewModel = UserViewModel()
     @AppStorage("isOnboarding") var isOnboarding: Bool = true
 
     var body: some Scene {
         WindowGroup {
-            if !authViewModel.isLoading && !recipeViewModel.isLoading && !userViewModel.isLoading{
+            if !authViewModel.isLoading && !recipeViewModel.isLoading {
                 if isOnboarding {
                     OnboardingView()
                 } else if authViewModel.authState == .signedOut {
@@ -37,7 +37,6 @@ struct FoodRecipeApp: App {
                     TabScreenView()
                         .environmentObject(authViewModel)
                         .environmentObject(recipeViewModel)
-                        .environmentObject(userViewModel)
                 }
             }
         }

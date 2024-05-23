@@ -6,8 +6,8 @@
 //
 
 import Combine
-import Firebase
 import FirebaseAuth
+import FirebaseFirestore
 
 class AuthViewModel: ObservableObject {
     enum AuthState {
@@ -32,11 +32,15 @@ class AuthViewModel: ObservableObject {
         db = Firestore.firestore()
         usersRef = db.collection("users")
         checkAuthStatus()
-        
+
         $authState
-            .sink { authState in
+            .removeDuplicates()
+            .sink { [weak self] authState in
+                guard let self = self else { return }
                 if authState == .signedOut {
-                    print("User not authenticated ")
+                    print("User not authenticated")
+                    self.currentUser = nil
+                    self.isLoading = false
                 } else if authState == .signedIn {
                     print("User authenticated")
                     self.fetchCurrentUser()
@@ -46,21 +50,28 @@ class AuthViewModel: ObservableObject {
     }
 
     func checkAuthStatus() {
-        Auth.auth().addStateDidChangeListener { _, user in
+        Auth.auth().addStateDidChangeListener { [weak self] _, user in
+            guard let self = self else { return }
             self.isLoading = false
             self.authState = user != nil ? .signedIn : .signedOut
             self.loggedUserEmail = user?.email ?? ""
+            if user != nil {
+                self.fetchCurrentUser()
+            }
         }
     }
 
     func login(email: String, password: String) {
-        Auth.auth().signIn(withEmail: email, password: password) { _, error in
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] _, error in
+            guard let self = self else { return }
             if let error = error {
                 print("Error on login:", error.localizedDescription)
                 self.loginError = error
                 return
             }
             self.authState = .signedIn
+            self.loggedUserEmail = email
+            self.fetchCurrentUser() // Fetch user data immediately after login
         }
     }
 
@@ -74,7 +85,8 @@ class AuthViewModel: ObservableObject {
     }
 
     func resetPassword(email: String) {
-        Auth.auth().sendPasswordReset(withEmail: email) { error in
+        Auth.auth().sendPasswordReset(withEmail: email) { [weak self] error in
+            guard let self = self else { return }
             if let error = error {
                 print("Error on password reset", error.localizedDescription)
                 self.resetPasswordError = error
@@ -86,7 +98,12 @@ class AuthViewModel: ObservableObject {
     }
 
     func fetchCurrentUser() {
-        let queryPublisher = Future<AppUser, Error> { promise in
+        guard !loggedUserEmail.isEmpty else {
+            print("Logged user email is empty, skipping fetchCurrentUser")
+            return
+        }
+        let queryPublisher = Future<AppUser, Error> { [weak self] promise in
+            guard let self = self else { return }
             Task {
                 do {
                     let user = try await self.getCurrentUser()
@@ -95,27 +112,26 @@ class AuthViewModel: ObservableObject {
                     promise(.failure(error))
                 }
             }
-
         }.receive(on: DispatchQueue.main)
 
         queryPublisher
-            .sink { completion in
+            .sink { [weak self] completion in
+                guard let self = self else { return }
                 switch completion {
                 case let .failure(error):
                     self.errorMessage = "Error getting currentUser \(error.localizedDescription)"
                 case .finished:
                     break
                 }
-            } receiveValue: { user in
+            } receiveValue: { [weak self] user in
+                guard let self = self else { return }
                 self.currentUser = user
             }.store(in: &cancellables)
     }
 
     func getCurrentUser() async throws -> AppUser {
         do {
-            print("LoggedUserEmail:", loggedUserEmail)
             let querySnapshot = try await usersRef.whereField("email", isEqualTo: loggedUserEmail).getDocuments()
-
             if let document = querySnapshot.documents.first {
                 let data = document.data()
                 let documentId = document.documentID
@@ -135,7 +151,6 @@ class AuthViewModel: ObservableObject {
                         favouriteRecipes: favouriteRecipes,
                         country: country
                     )
-                    print(user)
                     return user
                 } else {
                     throw NSError(domain: "getCurrentUser", code: 1, userInfo: [NSLocalizedDescriptionKey: "Missing required fields in document data for document ID \(documentId)."])
