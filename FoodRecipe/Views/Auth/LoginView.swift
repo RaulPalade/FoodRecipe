@@ -36,13 +36,13 @@ struct LoginView: View {
                         Text("Sign in now")
                             .font(.custom("Cabin-Regular", size: 26))
                             .padding([.leading, .trailing], 16)
-                            .foregroundColor(Color("ButtonColor"))
+                            .foregroundColor(Color("PrimaryDarkColor"))
                             .multilineTextAlignment(.center)
                             .bold()
                         Text("Please sign in to continue our app")
                             .font(.custom("Cabin-Regular", size: 16))
                             .padding([.leading, .trailing], 16)
-                            .foregroundColor(Color("ButtonColor"))
+                            .foregroundColor(Color("PrimaryDarkColor"))
                             .multilineTextAlignment(.center)
                     }
                     .padding(.bottom, 20)
@@ -62,7 +62,7 @@ struct LoginView: View {
                                         Text("Forgot Password?")
                                             .font(.custom("Cabin-Regular", size: 16))
                                             .bold()
-                                            .foregroundColor(Color("ButtonColor"))
+                                            .foregroundColor(Color("PrimaryDarkColor"))
                                             .padding(.vertical, 18)
                                             .padding(.trailing, 8)
                                     }
@@ -83,7 +83,7 @@ struct LoginView: View {
                                     Text("Sign up")
                                         .font(.custom("Cabin-Regular", size: 16))
                                         .bold()
-                                        .foregroundColor(Color("ButtonColor"))
+                                        .foregroundColor(Color("PrimaryDarkColor"))
                                         .padding(.vertical, 16)
                                 }
                                 .buttonStyle(.borderless)

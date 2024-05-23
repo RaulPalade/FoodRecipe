@@ -21,13 +21,13 @@ struct CountryListRow: View {
                 .foregroundColor(.white)
             Text(country.name)
                 .font(.custom("Cabin-Regular", size: 24))
-                .foregroundColor(isSelected ? .white : Color("ButtonColor"))
+                .foregroundColor(isSelected ? .white : Color("PrimaryDarkColor"))
             Spacer()
         }
         .frame(maxWidth: .infinity)
         .padding(.horizontal, 16)
         .padding(.vertical, 8)
-        .background(Color(isSelected ? Color("ButtonColor") : .white))
+        .background(Color(isSelected ? Color("PrimaryDarkColor") : .white))
         .onTapGesture {
             onSelect()
         }

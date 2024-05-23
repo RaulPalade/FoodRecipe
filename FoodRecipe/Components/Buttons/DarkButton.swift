@@ -20,7 +20,7 @@ struct DarkButton: View {
                 .frame(maxWidth: .infinity)
         }
         .buttonStyle(.borderedProminent)
-        .tint(Color("ButtonColor"))
+        .tint(Color("PrimaryDarkColor"))
         .foregroundColor(.white)
     }
 }

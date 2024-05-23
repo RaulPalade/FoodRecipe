@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ChipButton: View {
-    let titleKey: LocalizedStringKey
+    let titleKey: String
     @Binding var isSelected: Bool
 
     var body: some View {
@@ -17,8 +17,8 @@ struct ChipButton: View {
             .lineLimit(1)
             .padding(.vertical, 9)
             .padding(.horizontal, 24)
-            .foregroundColor(isSelected ? .white : Color("ButtonColor"))
-            .background(isSelected ? Color("AppPrimaryColor") : Color("ChipColor"))
+            .foregroundColor(isSelected ? .white : Color("PrimaryDarkColor"))
+            .background(isSelected ? Color("PrimaryLightColor") : Color("ChipColor"))
             .cornerRadius(40)
             .onTapGesture {
                 isSelected.toggle()

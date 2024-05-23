@@ -20,7 +20,7 @@ struct CustomTabBarView: View {
                 } label: {
                     Image(systemName: tab.rawValue)
                         .frame(maxWidth: .infinity)
-                        .foregroundStyle(selectedTab == tab ? Color("AppPrimaryColor") : .white)
+                        .foregroundStyle(selectedTab == tab ? Color("PrimaryLightColor") : .white)
                         .fontWeight(selectedTab == tab ? .bold : .regular)
                 }
             }

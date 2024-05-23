@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SectionHeader: View {
     var title: String
-    
+
     var body: some View {
         Text(title)
             .font(.custom("Cabin-Regular", size: 20))

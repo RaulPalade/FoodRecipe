@@ -166,7 +166,7 @@ struct CardView: View {
             Image("top-right")
             Spacer()
         }
-        .background(Color("AppPrimaryColor"))
+        .background(Color("PrimaryLightColor"))
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .edgesIgnoringSafeArea(.all)
     }

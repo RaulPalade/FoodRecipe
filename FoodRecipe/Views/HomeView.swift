@@ -17,7 +17,6 @@ struct HomeView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
                     // MARK: Featured Section
-
                     VStack(alignment: .leading, content: {
                         SectionHeader(title: "Recipe of the day")
                         FeaturedCard(recipe: recipeViewModel.recipes[0])
@@ -25,7 +24,6 @@ struct HomeView: View {
                     }).padding(.top, 24)
 
                     // MARK: Popular Recipes
-
                     VStack(alignment: .leading, content: {
                         SectionHeader(title: "Popular Recipes")
                         ScrollView(.horizontal, showsIndicators: false) {
@@ -35,7 +33,14 @@ struct HomeView: View {
                                         titleKey: chip.titleKey,
                                         isSelected: Binding<Bool>(
                                             get: { chipViewModel.isChipSelected(chip) },
-                                            set: { _ in chipViewModel.selectChip(chip) }
+                                            set: { isSelected in
+                                                chipViewModel.selectChip(chip)
+                                                if isSelected {
+                                                    recipeViewModel.filterRecipes(by: chip.titleKey)
+                                                } else {
+                                                    recipeViewModel.filterRecipes(by: nil)
+                                                }
+                                            }
                                         ))
                                 }
                             }
@@ -44,10 +49,10 @@ struct HomeView: View {
 
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 20) {
-                                ForEach(recipeViewModel.recipes) { recipe in
+                                ForEach(recipeViewModel.filteredRecipes) { recipe in
                                     PopularRecipeCard(
                                         recipe: recipe,
-                                        favourite: true,
+                                        favourite: authViewModel.currentUser?.favouriteRecipes.contains(recipe.id) ?? false,
                                         action: { addRecipeToFavourite(recipeId: recipe.id)
                                         })
                                 }
@@ -65,22 +70,22 @@ struct HomeView: View {
                                 HStack {
                                     Image(systemName: "sun.max")
                                         .symbolRenderingMode(.palette)
-                                        .foregroundStyle(Color("AppPrimaryColor"), .primary)
+                                        .foregroundStyle(Color("PrimaryLightColor"), .primary)
                                     Text("Good Morning")
                                         .font(.custom("Cabin-Regular", size: 14))
-                                        .foregroundColor(Color("ButtonColor"))
+                                        .foregroundColor(Color("PrimaryDarkColor"))
                                         .multilineTextAlignment(.center)
                                 }
                                 if let user = authViewModel.currentUser {
                                     Text(user.name)
                                         .font(.custom("Cabin-Regular", size: 24))
-                                        .foregroundColor(Color("ButtonColor"))
+                                        .foregroundColor(Color("PrimaryDarkColor"))
                                         .multilineTextAlignment(.center)
                                         .bold()
                                 } else {
                                     Text("user.name")
                                         .font(.custom("Cabin-Regular", size: 24))
-                                        .foregroundColor(Color("ButtonColor"))
+                                        .foregroundColor(Color("PrimaryDarkColor"))
                                         .multilineTextAlignment(.center)
                                         .bold()
                                 }

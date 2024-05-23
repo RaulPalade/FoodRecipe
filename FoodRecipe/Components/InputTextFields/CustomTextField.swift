@@ -15,7 +15,7 @@ struct CustomTextField: View {
         TextField(placeholder, text: $text)
             .autocapitalization(.none)
             .padding(.all, 24)
-            .foregroundColor(Color("ButtonColor"))
+            .foregroundColor(Color("PrimaryDarkColor"))
             .background(Color("AppLabelColor"))
             .clipShape(RoundedRectangle(cornerRadius: 16))
     }

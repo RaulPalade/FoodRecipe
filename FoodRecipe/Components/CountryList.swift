@@ -17,7 +17,7 @@ struct CountryList: View {
             Text("Select your country")
                 .font(.custom("Cabin-Regular", size: 26))
                 .padding([.leading, .trailing], 16)
-                .foregroundColor(Color("ButtonColor"))
+                .foregroundColor(Color("PrimaryDarkColor"))
                 .multilineTextAlignment(.center)
                 .bold()
             List {
@@ -43,7 +43,7 @@ struct CountryList: View {
                     .bold()
                     .padding(.vertical, 18)
                     .frame(maxWidth: .infinity)
-                    .background(Color("ButtonColor"))
+                    .background(Color("PrimaryDarkColor"))
                     .foregroundColor(.white)
                     .cornerRadius(8)
             }

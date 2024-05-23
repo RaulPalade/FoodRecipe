@@ -14,6 +14,7 @@ class RecipeViewModel: ObservableObject {
     let recipesRef: CollectionReference
 
     @Published var recipes: [Recipe] = []
+    @Published var filteredRecipes: [Recipe] = []
     @Published var errorMessage: String? = nil
     @Published var isLoading: Bool = true
 
@@ -48,6 +49,7 @@ class RecipeViewModel: ObservableObject {
                 }
             } receiveValue: { recipes in
                 self.recipes = recipes
+                self.filteredRecipes = recipes
                 self.isLoading = false
             }
             .store(in: &cancellables)
@@ -116,6 +118,17 @@ class RecipeViewModel: ObservableObject {
         let querySnapshot = try await ingredientsRef.getDocuments()
         return querySnapshot.documents.compactMap { document in
             try? document.data(as: RecipeIngredient.self)
+        }
+    }
+
+    func filterRecipes(by category: String?) {
+        if let category = category, !category.isEmpty {
+            let lowercasedCategory = category.lowercased()
+            filteredRecipes = recipes.filter { recipe in
+                recipe.category.contains { $0.lowercased() == lowercasedCategory }
+            }
+        } else {
+            filteredRecipes = recipes
         }
     }
 }

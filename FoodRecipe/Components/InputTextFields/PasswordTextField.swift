@@ -23,7 +23,7 @@ struct PasswordTextField: View {
             }
             Button(action: toggleAction) {
                 Image(systemName: isSecure ? "eye.slash.fill" : "eye.fill")
-                    .foregroundColor(Color("ButtonColor"))
+                    .foregroundColor(Color("PrimaryDarkColor"))
             }
         }
         .padding(.all, 24)

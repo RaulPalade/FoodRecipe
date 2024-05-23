@@ -26,7 +26,7 @@ struct PopularRecipeCard: View {
 
                 Image(systemName: favourite ? "heart.fill" : "heart")
                     .font(.custom("Cabin-Regular", size: 22))
-                    .foregroundColor(favourite ? .red : Color("ButtonColor"))
+                    .foregroundColor(favourite ? .red : Color("PrimaryDarkColor"))
                     .frame(width: 40, height: 40)
                     .background(Color.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -40,7 +40,7 @@ struct PopularRecipeCard: View {
 
             Text(recipe.name)
                 .font(.custom("Cabin-Regular", size: 16))
-                .foregroundColor(Color("ButtonColor"))
+                .foregroundColor(Color("PrimaryDarkColor"))
                 .bold()
                 .frame(maxWidth: .infinity, alignment: .center)
                 .multilineTextAlignment(.center)

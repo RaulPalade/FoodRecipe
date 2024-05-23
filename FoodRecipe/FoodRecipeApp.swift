@@ -23,7 +23,7 @@ struct FoodRecipeApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject var authViewModel = AuthViewModel()
     @StateObject var recipeViewModel = RecipeViewModel()
-    //@StateObject var userViewModel = UserViewModel()
+    // @StateObject var userViewModel = UserViewModel()
     @AppStorage("isOnboarding") var isOnboarding: Bool = true
 
     var body: some Scene {
