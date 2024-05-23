@@ -49,8 +49,6 @@ class UserViewModel: ObservableObject {
                 }
             } receiveValue: { users in
                 self.users = users
-                print("USERS LOADING = FALSE")
-                print(users)
                 self.isLoading = false
             }
             .store(in: &cancellables)

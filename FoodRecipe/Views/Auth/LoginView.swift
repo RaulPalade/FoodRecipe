@@ -108,7 +108,7 @@ struct LoginView: View {
     }
 
     func signIn() {
-        authViewModel.login(email: "raul@mail.com", password: "password")
+        authViewModel.login(email: email, password: password)
 
         if authViewModel.authState == .signedIn {
             isLoggingIn = true
