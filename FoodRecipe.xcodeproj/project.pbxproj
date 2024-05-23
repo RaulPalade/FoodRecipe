@@ -31,6 +31,8 @@
 		7590C7012BF4A3AF003F5F5C /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 7590C7002BF4A3AF003F5F5C /* FirebaseStorageCombine-Community */; };
 		7590C7052BF4F630003F5F5C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7590C7042BF4F630003F5F5C /* HomeView.swift */; };
 		7590C7072BF4F684003F5F5C /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7590C7062BF4F684003F5F5C /* OnboardingView.swift */; };
+		7596F99A2BFF962600578546 /* ScalingHeaderScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 7596F9992BFF962600578546 /* ScalingHeaderScrollView */; };
+		7596F99C2BFF9B7D00578546 /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7596F99B2BFF9B7D00578546 /* ProfileScreen.swift */; };
 		75B80BB12BF61D5C00889D8D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B80BB02BF61D5C00889D8D /* LoginView.swift */; };
 		75B80BB32BF652AE00889D8D /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B80BB22BF652AE00889D8D /* RegisterView.swift */; };
 		75B80BB52BF652B800889D8D /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B80BB42BF652B800889D8D /* ForgotPasswordView.swift */; };
@@ -103,6 +105,7 @@
 		7590C7042BF4F630003F5F5C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		7590C7062BF4F684003F5F5C /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		7590C73D2BF50A1F003F5F5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7596F99B2BFF9B7D00578546 /* ProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreen.swift; sourceTree = "<group>"; };
 		75B80BB02BF61D5C00889D8D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		75B80BB22BF652AE00889D8D /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		75B80BB42BF652B800889D8D /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
@@ -155,6 +158,7 @@
 				75C1DAA52BF7C43900425D83 /* SVGKit in Frameworks */,
 				7590C6DB2BF4A3AF003F5F5C /* FirebaseAuthCombine-Community in Frameworks */,
 				7590C6FF2BF4A3AF003F5F5C /* FirebaseStorage in Frameworks */,
+				7596F99A2BFF962600578546 /* ScalingHeaderScrollView in Frameworks */,
 				7590C6E72BF4A3AF003F5F5C /* FirebaseFirestoreCombine-Community in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,13 +220,14 @@
 		7590C73E2BF53E0E003F5F5C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7596F9972BFF677900578546 /* Recipe */,
 				75F983F82BFB81B900FC7808 /* NavMenu */,
 				75B80BAE2BF61B2C00889D8D /* Auth */,
 				7590C7042BF4F630003F5F5C /* HomeView.swift */,
 				7590C7062BF4F684003F5F5C /* OnboardingView.swift */,
 				75F983FB2BFB836400FC7808 /* RecipesView.swift */,
 				75F983FD2BFB837B00FC7808 /* ProfileView.swift */,
-				75F984072BFB8D3F00FC7808 /* RecipeDetailView.swift */,
+				7596F99B2BFF9B7D00578546 /* ProfileScreen.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -244,6 +249,14 @@
 				75C1DA952BF76FCF00425D83 /* PasswordTextField.swift */,
 			);
 			path = InputTextFields;
+			sourceTree = "<group>";
+		};
+		7596F9972BFF677900578546 /* Recipe */ = {
+			isa = PBXGroup;
+			children = (
+				75F984072BFB8D3F00FC7808 /* RecipeDetailView.swift */,
+			);
+			path = Recipe;
 			sourceTree = "<group>";
 		};
 		75B80BAE2BF61B2C00889D8D /* Auth */ = {
@@ -390,6 +403,7 @@
 				7590C7002BF4A3AF003F5F5C /* FirebaseStorageCombine-Community */,
 				75C1DAA42BF7C43900425D83 /* SVGKit */,
 				75C1DAA62BF7C43900425D83 /* SVGKitSwift */,
+				7596F9992BFF962600578546 /* ScalingHeaderScrollView */,
 			);
 			productName = FoodRecipe;
 			productReference = 75C4F7E02BF369C100DD7B0E /* FoodRecipe.app */;
@@ -466,6 +480,7 @@
 			packageReferences = (
 				75C4F80F2BF36C5A00DD7B0E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				75C1DAA32BF7C43800425D83 /* XCRemoteSwiftPackageReference "SVGKit" */,
+				7596F9982BFF962600578546 /* XCRemoteSwiftPackageReference "ScalingHeaderScrollView" */,
 			);
 			productRefGroup = 75C4F7E12BF369C100DD7B0E /* Products */;
 			projectDirPath = "";
@@ -533,6 +548,7 @@
 				758E84DE2BFCD93400EA3B1B /* SectionHeader.swift in Sources */,
 				75C1DA922BF76A5600425D83 /* DarkButton.swift in Sources */,
 				75B80BB12BF61D5C00889D8D /* LoginView.swift in Sources */,
+				7596F99C2BFF9B7D00578546 /* ProfileScreen.swift in Sources */,
 				757A964E2BFDC76100D1E8D7 /* PopularRecipeCard.swift in Sources */,
 				75F983FA2BFB81C900FC7808 /* TabScreenView.swift in Sources */,
 				75F9840C2BFB962C00FC7808 /* CustomTabBarView.swift in Sources */,
@@ -888,6 +904,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7596F9982BFF962600578546 /* XCRemoteSwiftPackageReference "ScalingHeaderScrollView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/ScalingHeaderScrollView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.3;
+			};
+		};
 		75C1DAA32BF7C43800425D83 /* XCRemoteSwiftPackageReference "SVGKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SVGKit/SVGKit";
@@ -946,6 +970,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 75C4F80F2BF36C5A00DD7B0E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageCombine-Community";
+		};
+		7596F9992BFF962600578546 /* ScalingHeaderScrollView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7596F9982BFF962600578546 /* XCRemoteSwiftPackageReference "ScalingHeaderScrollView" */;
+			productName = ScalingHeaderScrollView;
 		};
 		75C1DAA42BF7C43900425D83 /* SVGKit */ = {
 			isa = XCSwiftPackageProductDependency;

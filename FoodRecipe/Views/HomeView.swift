@@ -17,6 +17,7 @@ struct HomeView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
                     // MARK: Featured Section
+
                     VStack(alignment: .leading, content: {
                         SectionHeader(title: "Recipe of the day")
                         FeaturedCard(recipe: recipeViewModel.recipes[0])
@@ -24,6 +25,7 @@ struct HomeView: View {
                     }).padding(.top, 24)
 
                     // MARK: Popular Recipes
+
                     VStack(alignment: .leading, content: {
                         SectionHeader(title: "Popular Recipes")
                         ScrollView(.horizontal, showsIndicators: false) {
@@ -50,11 +52,13 @@ struct HomeView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 20) {
                                 ForEach(recipeViewModel.filteredRecipes) { recipe in
-                                    PopularRecipeCard(
-                                        recipe: recipe,
-                                        favourite: authViewModel.currentUser?.favouriteRecipes.contains(recipe.id) ?? false,
-                                        action: { addRecipeToFavourite(recipeId: recipe.id)
-                                        })
+                                    NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
+                                        PopularRecipeCard(
+                                            recipe: recipe,
+                                            favourite: authViewModel.currentUser?.favouriteRecipes.contains(recipe.id) ?? false,
+                                            action: { addRecipeToFavourite(recipeId: recipe.id) }
+                                        )
+                                    }
                                 }
                             }.padding()
                         }.scrollClipDisabled()

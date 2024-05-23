@@ -1,5 +1,5 @@
 {
-  "originHash" : "7d4e6276dd3bdeae8cc8d9673ba2e25175a2485ae78cc0edd7af99d2cadce3c3",
+  "originHash" : "1a1b05547541494dd2bb9873e90e449c88729304e67a96adbd6df47a03c754c5",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -119,6 +119,15 @@
       }
     },
     {
+      "identity" : "scalingheaderscrollview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/exyte/ScalingHeaderScrollView",
+      "state" : {
+        "revision" : "77274e1936b654322e736b43d63b548cea10eb30",
+        "version" : "1.1.3"
+      }
+    },
+    {
       "identity" : "svgkit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SVGKit/SVGKit",
@@ -143,6 +152,15 @@
       "state" : {
         "revision" : "9f0c76544701845ad98716f3f6a774a892152bcb",
         "version" : "1.26.0"
+      }
+    },
+    {
+      "identity" : "swiftui-introspect",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/siteline/swiftui-introspect",
+      "state" : {
+        "revision" : "7dc5b287f8040e4ad5038739850b758e78f77808",
+        "version" : "1.1.4"
       }
     }
   ],
