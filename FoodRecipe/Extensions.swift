@@ -16,6 +16,16 @@ extension Image {
     }
 }
 
+extension Double {
+    var formatted: String {
+        if self.truncatingRemainder(dividingBy: 1) == 0 {
+            return String(format: "%.0f", self)
+        } else {
+            return String(self)
+        }
+    }
+}
+
 extension View {
     func fontBold(color: Color = .black, size: CGFloat) -> some View {
         foregroundColor(color).font(.custom("Circe-Bold", size: size))

@@ -138,6 +138,7 @@ struct RecipeDetailView: View {
                         Spacer()
                         nutritionItem(icon: "fats", title: recipe.nutrition.fats, unit: "fats")
                     })
+                    .padding(.bottom, 12)
 
                     HStack(content: {
                         ForEach(TabMenu.allCases) { tab in
@@ -160,13 +161,22 @@ struct RecipeDetailView: View {
                     .background(Color.gray.opacity(0.2))
                     .cornerRadius(16)
 
-                    ForEach(recipe.ingredients.indices, id: \.self) { index in
-                        let ingredient = recipe.ingredients[index]
-                        ingredientCard(image: ingredient.imageUrl, title: ingredient.name, quantity: ingredient.quantity)
+                    if selectedTab == .ingredients {
+                        ForEach(recipe.ingredients.indices, id: \.self) { index in
+                            let ingredient = recipe.ingredients[index]
+                            ingredientCard(image: ingredient.imageUrl, title: ingredient.name, quantity: ingredient.quantity)
+                        }
+                    } else if selectedTab == .instructions {
+                        ForEach(recipe.instructions.indices, id: \.self) { index in
+                            let instruction = recipe.instructions[index]
+                            instructionItem(index: index + 1, instruction: instruction)
+                        }
                     }
 
                     creatorSection(author: recipe.author)
+                        .padding(.top, 12)
                     otherRecipesOfAuthor()
+                        .padding(.top, 12)
 
                     Color.clear.frame(height: 100)
                 }
@@ -203,7 +213,7 @@ struct RecipeDetailView: View {
                 .padding()
                 .background(Color("AppLabelColor"))
                 .cornerRadius(8)
-            Text(String(title) + " " + unit)
+            Text(String(title.formatted) + " " + unit)
                 .font(.custom("Cabin-Regular", size: 16))
                 .foregroundColor(Color("PrimaryDarkColor"))
         }).frame(maxWidth: .infinity, alignment: .leading)
@@ -230,6 +240,20 @@ struct RecipeDetailView: View {
         .background(.white)
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
         .shadow(color: Color.primary.opacity(0.1), radius: 10, x: 0, y: 0)
+    }
+
+    private func instructionItem(index: Int, instruction: String) -> some View {
+        HStack(content: {
+            Text(String(index))
+                .frame(width: 50, height: 50)
+                .background(Color("AppLabelColor"))
+                .foregroundColor(Color("PrimaryDarkColor"))
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+
+            Text(instruction)
+                .font(.custom("Cabin-Regular", size: 16))
+                .foregroundColor(Color("PrimaryDarkColor"))
+        }).frame(maxWidth: .infinity, alignment: .leading)
     }
 
     private func creatorSection(author: RecipeAuthor) -> some View {
@@ -272,7 +296,7 @@ struct RecipeDetailView: View {
 
                 NavigationLink(destination: AllRecipesView()) {
                     Text("See All")
-                        .font(.custom("Cabin-Regular", size: 20))
+                        .font(.custom("Cabin-Regular", size: 18))
                         .foregroundColor(Color("PrimaryLightColor"))
                         .bold()
                 }
@@ -280,8 +304,8 @@ struct RecipeDetailView: View {
             })
 
             LazyVGrid(columns: [
-                GridItem(.flexible(), spacing: 16), // Flessibile con spaziatura
-                GridItem(.flexible(), spacing: 16), // Flessibile con spaziatura
+                GridItem(.flexible(), spacing: 16),
+                GridItem(.flexible(), spacing: 16),
             ], spacing: 16) {
                 authorRecipesCard()
                 authorRecipesCard()
