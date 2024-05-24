@@ -52,7 +52,7 @@ struct HomeView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 20) {
                                 ForEach(recipeViewModel.filteredRecipes) { recipe in
-                                    NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
+                                    NavigationLink(destination: RecipeDetailView(recipe: recipe, isFavourite: authViewModel.currentUser?.favouriteRecipes.contains(recipe.id) ?? false)) {
                                         PopularRecipeCard(
                                             recipe: recipe,
                                             favourite: authViewModel.currentUser?.favouriteRecipes.contains(recipe.id) ?? false,

@@ -26,7 +26,7 @@ struct CustomTabBarView: View {
             }
         }
         .frame(width: UIScreen.main.bounds.width - 20, height: 60)
-        .background(Color("PrimaryDarkColor").opacity(0.9), in: RoundedRectangle(cornerRadius: 100))
+        .background(Color("PrimaryDarkColor"), in: RoundedRectangle(cornerRadius: 100))
     }
 }
 

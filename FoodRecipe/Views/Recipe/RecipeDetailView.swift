@@ -16,6 +16,7 @@ enum TabMenu: String, CaseIterable, Identifiable {
 
 struct RecipeDetailView: View {
     var recipe: Recipe
+    var isFavourite: Bool
     var avatarImage: String = "foodBgPortrait"
 
     @Environment(\.presentationMode) var presentationMode
@@ -46,7 +47,6 @@ struct RecipeDetailView: View {
         .ignoresSafeArea()
         .navigationBarHidden(true)
     }
-    
 
     private var topButtons: some View {
         VStack {
@@ -54,7 +54,10 @@ struct RecipeDetailView: View {
                 Button("", action: { self.presentationMode.wrappedValue.dismiss() })
                     .buttonStyle(SquareButtonStyle(imageName: "arrow.backward"))
                 Spacer()
-                Button("", action: { print("Info") })
+
+                isFavourite ? Button("", action: { print("Info") })
+                    .buttonStyle(SquareButtonStyle(imageName: "heart.fill")) :
+                    Button("", action: { print("Info") })
                     .buttonStyle(SquareButtonStyle(imageName: "heart"))
             }
             Spacer()
@@ -133,18 +136,18 @@ struct RecipeDetailView: View {
                     description
 
                     HStack(content: {
-                        nutritionElement2(icon: "carbs", title: recipe.nutrition.carb, unit: "carbs")
+                        nutritionItem(icon: "carbs", title: recipe.nutrition.carb, unit: "carbs")
                         Spacer()
-                        nutritionElement2(icon: "proteins", title: recipe.nutrition.proteins, unit: "proteins")
+                        nutritionItem(icon: "proteins", title: recipe.nutrition.proteins, unit: "proteins")
                     })
 
                     HStack(content: {
-                        nutritionElement2(icon: "calories", title: recipe.nutrition.carb, unit: "Kcals")
+                        nutritionItem(icon: "calories", title: recipe.nutrition.carb, unit: "Kcals")
                         Spacer()
-                        nutritionElement2(icon: "fats", title: recipe.nutrition.proteins, unit: "fats")
+                        nutritionItem(icon: "fats", title: recipe.nutrition.proteins, unit: "fats")
                     })
 
-                    HStack(spacing: 0) {
+                    HStack(content: {
                         ForEach(TabMenu.allCases) { tab in
                             Text(tab.rawValue)
                                 .font(.custom("Cabin-Regular", size: 16))
@@ -160,18 +163,16 @@ struct RecipeDetailView: View {
                                     }
                                 }
                         }
-                    }
+                    })
                     .padding(4)
                     .background(Color.gray.opacity(0.2))
                     .cornerRadius(16)
 
                     ForEach(recipe.ingredients) { ingredient in
                         ingredientCard(image: ingredient.imageUrl, title: ingredient.name, quantity: ingredient.quantity)
-                        ingredientCard(image: ingredient.imageUrl, title: ingredient.name, quantity: ingredient.quantity)
-                        ingredientCard(image: ingredient.imageUrl, title: ingredient.name, quantity: ingredient.quantity)
                     }
 
-                    authorSection()
+                    creatorSection()
                     otherRecipesOfAuthor()
 
                     Color.clear.frame(height: 100)
@@ -197,7 +198,13 @@ struct RecipeDetailView: View {
         })
     }
 
-    private func nutritionElement2(icon: String, title: Double, unit: String) -> some View {
+    private var description: some View {
+        Text(recipe.description)
+            .font(.custom("Cabin-Regular", size: 16))
+            .foregroundColor(Color("PrimaryDarkColor"))
+    }
+
+    private func nutritionItem(icon: String, title: Double, unit: String) -> some View {
         HStack(content: {
             Image(icon)
                 .padding()
@@ -232,7 +239,7 @@ struct RecipeDetailView: View {
         .shadow(color: Color.primary.opacity(0.1), radius: 10, x: 0, y: 0)
     }
 
-    private func authorSection() -> some View {
+    private func creatorSection() -> some View {
         VStack(alignment: .leading, content: {
             Text("Creator")
                 .font(.custom("Cabin-Regular", size: 20))
@@ -324,14 +331,8 @@ struct RecipeDetailView: View {
         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
         .shadow(color: Color.primary.opacity(0.2), radius: 10, x: 0, y: 0)
     }
-
-    private var description: some View {
-        Text(recipe.description)
-            .font(.custom("Cabin-Regular", size: 16))
-            .foregroundColor(Color("PrimaryDarkColor"))
-    }
 }
 
 #Preview {
-    RecipeDetailView(recipe: recipePreviewData)
+    RecipeDetailView(recipe: recipePreviewData, isFavourite: true)
 }
