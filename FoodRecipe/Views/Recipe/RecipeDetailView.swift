@@ -18,12 +18,12 @@ struct RecipeDetailView: View {
     var recipe: Recipe
     var isFavourite: Bool
     var avatarImage: String = "foodBgPortrait"
+    @EnvironmentObject var recipeViewModel: RecipeViewModel
 
     @Environment(\.presentationMode) var presentationMode
     @State var progress: CGFloat = 0
     private let minHeight = 110.0
     private let maxHeight = 372.0
-
     @State private var selectedTab: TabMenu = .ingredients
 
     var body: some View {
@@ -41,8 +41,8 @@ struct RecipeDetailView: View {
             .allowsHeaderGrowth()
 
             topButtons
-                .padding(.horizontal, 24)
-                .padding(.top, 40)
+                .padding(.horizontal, 20)
+                .padding(.top, 50)
         }
         .ignoresSafeArea()
         .navigationBarHidden(true)
@@ -52,13 +52,18 @@ struct RecipeDetailView: View {
         VStack {
             HStack {
                 Button("", action: { self.presentationMode.wrappedValue.dismiss() })
-                    .buttonStyle(SquareButtonStyle(imageName: "arrow.backward"))
+                    .buttonStyle(SquareButtonStyle(
+                        imageName: "arrow.backward",
+                        foreground: progress == 1 ? Color("AppLabelColor") : Color("PrimaryDarkColor"),
+                        background: progress == 1 ? Color("PrimaryDarkColor") : Color("AppLabelColor")))
                 Spacer()
 
-                isFavourite ? Button("", action: { print("Info") })
-                    .buttonStyle(SquareButtonStyle(imageName: "heart.fill")) :
-                    Button("", action: { print("Info") })
-                    .buttonStyle(SquareButtonStyle(imageName: "heart"))
+                Button("", action: { self.presentationMode.wrappedValue.dismiss() })
+                    .buttonStyle(SquareButtonStyle(
+                        imageName: isFavourite ? "heart.fill" : "heart",
+                        foreground: isFavourite ? Color.red : (progress == 1 ? Color("AppLabelColor") : Color("PrimaryDarkColor")),
+
+                        background: progress == 1 ? Color("PrimaryDarkColor") : Color("AppLabelColor")))
             }
             Spacer()
         }
@@ -72,7 +77,9 @@ struct RecipeDetailView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 6))
 
             Text(recipe.name)
-                .fontRegular(color: .gray, size: 17)
+                .font(.custom("Cabin-Regular", size: 18))
+                .foregroundColor(Color("PrimaryDarkColor"))
+                .bold()
         }
     }
 
@@ -86,21 +93,6 @@ struct RecipeDetailView: View {
 
             VStack {
                 Spacer()
-
-                HStack(spacing: 4) {
-                    Capsule()
-                        .frame(width: 40, height: 3)
-                        .foregroundColor(.white)
-
-                    Capsule()
-                        .frame(width: 40, height: 3)
-                        .foregroundColor(.white.opacity(0.2))
-
-                    Capsule()
-                        .frame(width: 40, height: 3)
-                        .foregroundColor(.white.opacity(0.2))
-                }
-
                 ZStack(alignment: .leading) {
                     VisualEffectView(effect: UIBlurEffect(style: .regular))
                         .mask(Rectangle().cornerRadius(40, corners: [.topLeft, .topRight]))
@@ -136,15 +128,15 @@ struct RecipeDetailView: View {
                     description
 
                     HStack(content: {
-                        nutritionItem(icon: "carbs", title: recipe.nutrition.carb, unit: "carbs")
+                        nutritionItem(icon: "carbs", title: recipe.nutrition.carbs, unit: "carbs")
                         Spacer()
                         nutritionItem(icon: "proteins", title: recipe.nutrition.proteins, unit: "proteins")
                     })
 
                     HStack(content: {
-                        nutritionItem(icon: "calories", title: recipe.nutrition.carb, unit: "Kcals")
+                        nutritionItem(icon: "calories", title: recipe.nutrition.calories, unit: "Kcals")
                         Spacer()
-                        nutritionItem(icon: "fats", title: recipe.nutrition.proteins, unit: "fats")
+                        nutritionItem(icon: "fats", title: recipe.nutrition.fats, unit: "fats")
                     })
 
                     HStack(content: {
@@ -156,9 +148,9 @@ struct RecipeDetailView: View {
                                 .frame(maxWidth: .infinity)
                                 .background(self.selectedTab == tab ? Color("PrimaryDarkColor") : Color.clear)
                                 .foregroundColor(self.selectedTab == tab ? Color.white : Color("PrimaryDarkColor"))
-                                .cornerRadius(self.selectedTab == tab ? 16 : 0)
+                                .cornerRadius(16)
                                 .onTapGesture {
-                                    withAnimation {
+                                    withAnimation(.easeInOut(duration: 0.3)) {
                                         self.selectedTab = tab
                                     }
                                 }
@@ -168,11 +160,12 @@ struct RecipeDetailView: View {
                     .background(Color.gray.opacity(0.2))
                     .cornerRadius(16)
 
-                    ForEach(recipe.ingredients) { ingredient in
+                    ForEach(recipe.ingredients.indices, id: \.self) { index in
+                        let ingredient = recipe.ingredients[index]
                         ingredientCard(image: ingredient.imageUrl, title: ingredient.name, quantity: ingredient.quantity)
                     }
 
-                    creatorSection()
+                    creatorSection(author: recipe.author)
                     otherRecipesOfAuthor()
 
                     Color.clear.frame(height: 100)
@@ -190,10 +183,10 @@ struct RecipeDetailView: View {
                 .bold()
             Spacer()
             Image(systemName: "clock")
-                .font(.custom("Cabin-Regular", size: 14))
+                .font(.custom("Cabin-Regular", size: 18))
                 .foregroundColor(Color("PrimaryDarkColor"))
             Text(recipe.time)
-                .font(.custom("Cabin-Regular", size: 14))
+                .font(.custom("Cabin-Regular", size: 18))
                 .foregroundColor(Color("PrimaryDarkColor"))
         })
     }
@@ -239,7 +232,7 @@ struct RecipeDetailView: View {
         .shadow(color: Color.primary.opacity(0.1), radius: 10, x: 0, y: 0)
     }
 
-    private func creatorSection() -> some View {
+    private func creatorSection(author: RecipeAuthor) -> some View {
         VStack(alignment: .leading, content: {
             Text("Creator")
                 .font(.custom("Cabin-Regular", size: 20))
@@ -256,10 +249,11 @@ struct RecipeDetailView: View {
                     )
 
                 VStack(alignment: .leading, content: {
-                    Text("Natalia Luca")
+                    Text(author.name)
                         .font(.custom("Cabin-Regular", size: 16))
                         .foregroundColor(Color("PrimaryDarkColor"))
-                    Text("I'm the author and recipe developer.")
+                        .bold()
+                    Text(author.description)
                         .font(.custom("Cabin-Regular", size: 16))
                         .foregroundColor(Color("PrimaryDarkColor"))
                 })
@@ -285,22 +279,13 @@ struct RecipeDetailView: View {
 
             })
 
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 20) {
-                    authorRecipesCard()
-                    authorRecipesCard()
-                    authorRecipesCard()
-                    /* ForEach(recipeViewModel.filteredRecipes) { recipe in
-                         NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
-                             PopularRecipeCard(
-                                 recipe: recipe,
-                                 favourite: authViewModel.currentUser?.favouriteRecipes.contains(recipe.id) ?? false,
-                                 action: { addRecipeToFavourite(recipeId: recipe.id) }
-                             )
-                         }
-                     } */
-                }.padding()
-            }.scrollClipDisabled()
+            LazyVGrid(columns: [
+                GridItem(.flexible(), spacing: 16), // Flessibile con spaziatura
+                GridItem(.flexible(), spacing: 16), // Flessibile con spaziatura
+            ], spacing: 16) {
+                authorRecipesCard()
+                authorRecipesCard()
+            }
         })
     }
 
@@ -326,7 +311,7 @@ struct RecipeDetailView: View {
                 .padding([.leading, .trailing], 8)
                 .padding(.bottom, 12)
         }
-        .frame(width: UIScreen.main.bounds.width / 3)
+        .frame(width: UIScreen.main.bounds.width / 2.5)
         .background(.white)
         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
         .shadow(color: Color.primary.opacity(0.2), radius: 10, x: 0, y: 0)

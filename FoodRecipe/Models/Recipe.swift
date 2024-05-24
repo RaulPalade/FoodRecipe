@@ -26,11 +26,11 @@ struct Recipe: Identifiable, Decodable {
 struct RecipeAuthor: Decodable {
     let authorId: String
     let name: String
+    let description: String
     let imageUrl: String
 }
 
-struct RecipeIngredient: Identifiable, Decodable {
-    let id: String
+struct RecipeIngredient: Decodable {
     let name: String
     let imageUrl: String
     let quantity: String

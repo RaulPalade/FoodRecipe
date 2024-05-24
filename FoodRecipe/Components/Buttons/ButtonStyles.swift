@@ -10,8 +10,8 @@ import SwiftUI
 
 struct SquareButtonStyle: ButtonStyle {
     var imageName: String
-    var foreground = Color.black
-    var background = Color.white
+    var foreground: Color
+    var background: Color
     var width: CGFloat = 40
     var height: CGFloat = 40
 

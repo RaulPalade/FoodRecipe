@@ -12,6 +12,6 @@ var countryPreviewData = Country(id: 1, name: "Italy", isoAlpha2: "IT", flag: "i
 var countriesPreviewData = [Country](repeating: countryPreviewData, count: 20)
 
 var recipePreviewData = Recipe(id: "1", name: "Pasta al pomodoro", description: "A simple and tasty dish, perfect for a quick dinner."
-                               , category: ["pranzo", "cena"], ingredients: [RecipeIngredient(id: "1", name: "Pasta", imageUrl: "", quantity: "100g")], instructions: ["Cuocere la pasta"], nutrition: Nutrition(calories: 360, carb: 60, proteins: 10, fats: 10), author: RecipeAuthor(authorId: "", name: "Raul Palade", imageUrl: ""), rating: 4.8, time: "20 min", createdAt: "", imageUrl: "")
+                               , category: ["pranzo", "cena"], ingredients: [RecipeIngredient(name: "Pasta", imageUrl: "", quantity: "100g")], instructions: ["Cuocere la pasta"], nutrition: Nutrition(calories: 360, carbs: 60, proteins: 10, fats: 10), author: RecipeAuthor(authorId: "", name: "Raul Palade", description: "Dedicated chef committed to using fresh, seasonal ingredients to create culinary masterpieces", imageUrl: ""), rating: 4.8, time: "20 min", createdAt: "", imageUrl: "")
 
 var recipesPreviewData = [Recipe](repeating: recipePreviewData, count: 5)

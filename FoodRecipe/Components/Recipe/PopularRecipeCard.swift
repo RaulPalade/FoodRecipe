@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct PopularRecipeCard: View {
+struct PopularRecipeCard: View {    
     var recipe: Recipe
     @State var favourite: Bool
-    var action: () -> Void
+    var setFavourite: () -> Void
 
     var body: some View {
         VStack {
@@ -34,7 +34,7 @@ struct PopularRecipeCard: View {
                     .offset(x: 65, y: -34)
                     .onTapGesture {
                         favourite.toggle()
-                        action()
+                        setFavourite()
                     }
             }
 
@@ -73,5 +73,5 @@ struct PopularRecipeCard: View {
 }
 
 #Preview {
-    PopularRecipeCard(recipe: recipePreviewData, favourite: true, action: {})
+    PopularRecipeCard(recipe: recipePreviewData, favourite: true, setFavourite: {})
 }

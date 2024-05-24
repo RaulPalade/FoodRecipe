@@ -15,6 +15,7 @@ class RecipeViewModel: ObservableObject {
 
     @Published var recipes: [Recipe] = []
     @Published var filteredRecipes: [Recipe] = []
+    @Published var recipesByAuthor: [Recipe] = []
     @Published var errorMessage: String? = nil
     @Published var isLoading: Bool = true
 
@@ -76,7 +77,7 @@ class RecipeViewModel: ObservableObject {
                let createdAt = data["createdAt"] as? String {
                 let nutrition = Nutrition(
                     calories: nutritionData["calories"] ?? 0,
-                    carb: nutritionData["carb"] ?? 0,
+                    carbs: nutritionData["carbs"] ?? 0,
                     proteins: nutritionData["proteins"] ?? 0,
                     fats: nutritionData["fats"] ?? 0
                 )
@@ -84,6 +85,7 @@ class RecipeViewModel: ObservableObject {
                 let author = RecipeAuthor(
                     authorId: authorData["authorId"] ?? "",
                     name: authorData["name"] ?? "",
+                    description: authorData["description"] ?? "",
                     imageUrl: authorData["imageUrl"] ?? ""
                 )
 
@@ -121,7 +123,7 @@ class RecipeViewModel: ObservableObject {
         }
     }
 
-    func filterRecipes(by category: String?) {
+    func filterRecipesByCategory(by category: String?) {
         if let category = category, !category.isEmpty {
             let lowercasedCategory = category.lowercased()
             filteredRecipes = recipes.filter { recipe in
@@ -129,6 +131,15 @@ class RecipeViewModel: ObservableObject {
             }
         } else {
             filteredRecipes = recipes
+        }
+    }
+
+    func filterRecipesByAuthor(by author: String?) {
+        print(filterRecipesByAuthor)
+        if let author = author, !author.isEmpty {
+            recipesByAuthor = recipes.filter { recipe in
+                recipe.author.authorId == author
+            }
         }
     }
 }

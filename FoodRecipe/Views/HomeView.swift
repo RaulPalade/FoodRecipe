@@ -38,9 +38,9 @@ struct HomeView: View {
                                             set: { isSelected in
                                                 chipViewModel.selectChip(chip)
                                                 if isSelected {
-                                                    recipeViewModel.filterRecipes(by: chip.titleKey)
+                                                    recipeViewModel.filterRecipesByCategory(by: chip.titleKey)
                                                 } else {
-                                                    recipeViewModel.filterRecipes(by: nil)
+                                                    recipeViewModel.filterRecipesByCategory(by: nil)
                                                 }
                                             }
                                         ))
@@ -52,11 +52,16 @@ struct HomeView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 20) {
                                 ForEach(recipeViewModel.filteredRecipes) { recipe in
-                                    NavigationLink(destination: RecipeDetailView(recipe: recipe, isFavourite: authViewModel.currentUser?.favouriteRecipes.contains(recipe.id) ?? false)) {
+                                    NavigationLink(destination: RecipeDetailView(recipe: recipe, isFavourite: authViewModel.currentUser?.favouriteRecipes.contains(recipe.id) ?? false)
+                                        .onAppear(perform: {
+                                            recipeViewModel.filterRecipesByAuthor(by: recipe.author.authorId)
+                                        })
+                                    ) {
                                         PopularRecipeCard(
                                             recipe: recipe,
                                             favourite: authViewModel.currentUser?.favouriteRecipes.contains(recipe.id) ?? false,
-                                            action: { addRecipeToFavourite(recipeId: recipe.id) }
+                                            setFavourite: { addRecipeToFavourite(recipeId: recipe.id)
+                                            }
                                         )
                                     }
                                 }

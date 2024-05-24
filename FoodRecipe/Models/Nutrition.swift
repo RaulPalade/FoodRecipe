@@ -9,7 +9,7 @@ import Foundation
 
 struct Nutrition: Decodable {
     let calories: Double
-    let carb: Double
+    let carbs: Double
     let proteins: Double
     let fats: Double
 }
