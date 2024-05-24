@@ -40,42 +40,39 @@ struct RecipeDetailView: View {
             .allowsHeaderGrowth()
 
             topButtons
+                .padding(.horizontal, 24)
+                .padding(.top, 40)
         }
         .ignoresSafeArea()
+        .navigationBarHidden(true)
     }
+    
 
     private var topButtons: some View {
         VStack {
             HStack {
                 Button("", action: { self.presentationMode.wrappedValue.dismiss() })
-                    .buttonStyle(CircleButtonStyle(imageName: "arrow.backward"))
-                    .padding(.leading, 17)
-                    .padding(.top, 50)
+                    .buttonStyle(SquareButtonStyle(imageName: "arrow.backward"))
                 Spacer()
                 Button("", action: { print("Info") })
-                    .buttonStyle(CircleButtonStyle(imageName: "ellipsis"))
-                    .padding(.trailing, 17)
-                    .padding(.top, 50)
+                    .buttonStyle(SquareButtonStyle(imageName: "heart"))
             }
             Spacer()
         }
-        .ignoresSafeArea()
     }
 
-    // SERVE
     private var smallHeader: some View {
-        HStack(spacing: 12.0) {
+        HStack(spacing: 12) {
             Image(avatarImage)
                 .resizable()
-                .frame(width: 40.0, height: 40.0)
-                .clipShape(RoundedRectangle(cornerRadius: 6.0))
+                .frame(width: 40, height: 40)
+                .clipShape(RoundedRectangle(cornerRadius: 6))
 
             Text(recipe.name)
-                .fontRegular(color: .appDarkGray, size: 17)
+                .fontRegular(color: .gray, size: 17)
         }
     }
 
-    // SERVE
     private func largeHeader(progress: CGFloat) -> some View {
         ZStack {
             Image(avatarImage)
@@ -87,43 +84,44 @@ struct RecipeDetailView: View {
             VStack {
                 Spacer()
 
-                HStack(spacing: 4.0) {
+                HStack(spacing: 4) {
                     Capsule()
-                        .frame(width: 40.0, height: 3.0)
+                        .frame(width: 40, height: 3)
                         .foregroundColor(.white)
 
                     Capsule()
-                        .frame(width: 40.0, height: 3.0)
+                        .frame(width: 40, height: 3)
                         .foregroundColor(.white.opacity(0.2))
 
                     Capsule()
-                        .frame(width: 40.0, height: 3.0)
+                        .frame(width: 40, height: 3)
                         .foregroundColor(.white.opacity(0.2))
                 }
 
                 ZStack(alignment: .leading) {
                     VisualEffectView(effect: UIBlurEffect(style: .regular))
                         .mask(Rectangle().cornerRadius(40, corners: [.topLeft, .topRight]))
-                        .offset(y: 10.0)
-                        .frame(height: 80.0)
+                        .offset(y: 10)
+                        .frame(height: 80)
 
-                    RoundedRectangle(cornerRadius: 40.0, style: .circular)
+                    RoundedRectangle(cornerRadius: 40, style: .circular)
                         .foregroundColor(.clear)
                         .background(
-                            LinearGradient(gradient: Gradient(colors: [.white.opacity(0.0), .white]), startPoint: .top, endPoint: .bottom)
+                            LinearGradient(gradient: Gradient(colors: [.white.opacity(0), .white]), startPoint: .top, endPoint: .bottom)
                         )
 
-                    userNameComponent
-                        .padding(.leading, 24.0)
-                        .padding(.top, 10.0)
+                    recipeNameComponent
+                        .padding(.leading, 24)
+                        .padding(.trailing, 24)
+                        .padding(.top, 10)
                         .opacity(1 - max(0, min(1, (progress - 0.75) * 4.0)))
 
                     smallHeader
-                        .padding(.leading, 85.0)
+                        .padding(.leading, 85)
                         .opacity(progress)
                         .opacity(max(0, min(1, (progress - 0.75) * 4.0)))
                 }
-                .frame(height: 80.0)
+                .frame(height: 80)
             }
         }
     }
@@ -146,12 +144,26 @@ struct RecipeDetailView: View {
                         nutritionElement2(icon: "fats", title: recipe.nutrition.proteins, unit: "fats")
                     })
 
-                    Picker("Tab Selector", selection: $selectedTab) {
+                    HStack(spacing: 0) {
                         ForEach(TabMenu.allCases) { tab in
                             Text(tab.rawValue)
+                                .font(.custom("Cabin-Regular", size: 16))
+                                .bold()
+                                .padding(10)
+                                .frame(maxWidth: .infinity)
+                                .background(self.selectedTab == tab ? Color("PrimaryDarkColor") : Color.clear)
+                                .foregroundColor(self.selectedTab == tab ? Color.white : Color("PrimaryDarkColor"))
+                                .cornerRadius(self.selectedTab == tab ? 16 : 0)
+                                .onTapGesture {
+                                    withAnimation {
+                                        self.selectedTab = tab
+                                    }
+                                }
                         }
                     }
-                    .pickerStyle(.segmented)
+                    .padding(4)
+                    .background(Color.gray.opacity(0.2))
+                    .cornerRadius(16)
 
                     ForEach(recipe.ingredients) { ingredient in
                         ingredientCard(image: ingredient.imageUrl, title: ingredient.name, quantity: ingredient.quantity)
@@ -161,7 +173,7 @@ struct RecipeDetailView: View {
 
                     authorSection()
                     otherRecipesOfAuthor()
-                    
+
                     Color.clear.frame(height: 100)
                 }
                 .padding(.horizontal, 24)
@@ -169,12 +181,19 @@ struct RecipeDetailView: View {
         }
     }
 
-    private var userNameComponent: some View {
+    private var recipeNameComponent: some View {
         HStack(content: {
             Text(recipe.name)
+                .font(.custom("Cabin-Regular", size: 24))
+                .foregroundColor(Color("PrimaryDarkColor"))
+                .bold()
             Spacer()
             Image(systemName: "clock")
+                .font(.custom("Cabin-Regular", size: 14))
+                .foregroundColor(Color("PrimaryDarkColor"))
             Text(recipe.time)
+                .font(.custom("Cabin-Regular", size: 14))
+                .foregroundColor(Color("PrimaryDarkColor"))
         })
     }
 
@@ -185,20 +204,29 @@ struct RecipeDetailView: View {
                 .background(Color("AppLabelColor"))
                 .cornerRadius(8)
             Text(String(title) + " " + unit)
-        })
+                .font(.custom("Cabin-Regular", size: 16))
+                .foregroundColor(Color("PrimaryDarkColor"))
+        }).frame(maxWidth: .infinity, alignment: .leading)
     }
 
     private func ingredientCard(image: String, title: String, quantity: String) -> some View {
         HStack(content: {
-            Image(image)
-                .padding()
+            Image("foodForCard")
+                .resizable()
+                .frame(width: 30, height: 30)
+                .padding(.all, 8)
                 .background(Color("AppLabelColor"))
                 .cornerRadius(8)
             Text(title)
+                .font(.custom("Cabin-Regular", size: 18))
+                .bold()
+                .padding(.leading, 8)
             Spacer()
             Text(quantity)
+                .font(.custom("Cabin-Regular", size: 18))
+                .bold()
         })
-        .padding()
+        .padding(.all)
         .background(.white)
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
         .shadow(color: Color.primary.opacity(0.1), radius: 10, x: 0, y: 0)
@@ -231,33 +259,44 @@ struct RecipeDetailView: View {
             })
         })
     }
-    
+
     private func otherRecipesOfAuthor() -> some View {
         VStack(alignment: .leading, content: {
-            Text("Related Recipes")
-                .font(.custom("Cabin-Regular", size: 20))
-                .foregroundColor(Color("PrimaryDarkColor"))
-                .bold()
-            
+            HStack(content: {
+                Text("Related Recipes")
+                    .font(.custom("Cabin-Regular", size: 20))
+                    .foregroundColor(Color("PrimaryDarkColor"))
+                    .bold()
+                Spacer()
+
+                NavigationLink(destination: AllRecipesView()) {
+                    Text("See All")
+                        .font(.custom("Cabin-Regular", size: 20))
+                        .foregroundColor(Color("PrimaryLightColor"))
+                        .bold()
+                }
+
+            })
+
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 20) {
                     authorRecipesCard()
                     authorRecipesCard()
                     authorRecipesCard()
-                    /*ForEach(recipeViewModel.filteredRecipes) { recipe in
-                        NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
-                            PopularRecipeCard(
-                                recipe: recipe,
-                                favourite: authViewModel.currentUser?.favouriteRecipes.contains(recipe.id) ?? false,
-                                action: { addRecipeToFavourite(recipeId: recipe.id) }
-                            )
-                        }
-                    }*/
+                    /* ForEach(recipeViewModel.filteredRecipes) { recipe in
+                         NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
+                             PopularRecipeCard(
+                                 recipe: recipe,
+                                 favourite: authViewModel.currentUser?.favouriteRecipes.contains(recipe.id) ?? false,
+                                 action: { addRecipeToFavourite(recipeId: recipe.id) }
+                             )
+                         }
+                     } */
                 }.padding()
             }.scrollClipDisabled()
         })
     }
-    
+
     private func authorRecipesCard() -> some View {
         VStack {
             ZStack {
@@ -265,9 +304,7 @@ struct RecipeDetailView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .cornerRadius(20)
-                    .padding(.horizontal, 16)
-                    .padding(.top, 16)
-                    .padding(.bottom, 12)
+                    .padding(.all, 8)
                     .frame(maxWidth: .infinity)
             }
 
@@ -275,37 +312,23 @@ struct RecipeDetailView: View {
                 .font(.custom("Cabin-Regular", size: 16))
                 .foregroundColor(Color("PrimaryDarkColor"))
                 .bold()
-                .frame(maxWidth: .infinity, alignment: .center)
+                .frame(alignment: .center)
                 .multilineTextAlignment(.center)
-
-            HStack(content: {
-                Image(systemName: "flame")
-                    .font(.custom("Cabin-Regular", size: 14))
-                    .foregroundColor(Color("GrayTextColor"))
-                Text(String(recipe.nutrition.calories) + " cal")
-                    .font(.custom("Cabin-Regular", size: 14))
-                    .foregroundColor(Color("GrayTextColor"))
-                Image(systemName: "circle.fill")
-                    .font(.custom("Cabin-Regular", size: 8))
-                    .foregroundColor(Color("GrayTextColor"))
-                Image(systemName: "clock")
-                    .font(.custom("Cabin-Regular", size: 14))
-                    .foregroundColor(Color("GrayTextColor"))
-                Text(recipe.time)
-                    .font(.custom("Cabin-Regular", size: 14))
-                    .foregroundColor(Color("GrayTextColor"))
-            })
-            .padding(.top, 4)
-            .padding(.bottom, 12)
+                .lineLimit(1)
+                .truncationMode(.tail)
+                .padding([.leading, .trailing], 8)
+                .padding(.bottom, 12)
         }
-        .frame(width: UIScreen.main.bounds.width / 1.7)
+        .frame(width: UIScreen.main.bounds.width / 3)
         .background(.white)
-        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
         .shadow(color: Color.primary.opacity(0.2), radius: 10, x: 0, y: 0)
     }
 
     private var description: some View {
         Text(recipe.description)
+            .font(.custom("Cabin-Regular", size: 16))
+            .foregroundColor(Color("PrimaryDarkColor"))
     }
 }
 

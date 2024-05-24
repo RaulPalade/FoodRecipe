@@ -32,7 +32,10 @@
 		7590C7052BF4F630003F5F5C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7590C7042BF4F630003F5F5C /* HomeView.swift */; };
 		7590C7072BF4F684003F5F5C /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7590C7062BF4F684003F5F5C /* OnboardingView.swift */; };
 		7596F99A2BFF962600578546 /* ScalingHeaderScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 7596F9992BFF962600578546 /* ScalingHeaderScrollView */; };
-		7596F99C2BFF9B7D00578546 /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7596F99B2BFF9B7D00578546 /* ProfileScreen.swift */; };
+		75A790072C00905D0002463F /* AllRecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A790062C00905C0002463F /* AllRecipesView.swift */; };
+		75A790092C00937D0002463F /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A790082C00937D0002463F /* VisualEffectView.swift */; };
+		75A7900B2C0093D40002463F /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A7900A2C0093D40002463F /* RoundedCorner.swift */; };
+		75A7900D2C00A0DA0002463F /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A7900C2C00A0DA0002463F /* ButtonStyles.swift */; };
 		75B80BB12BF61D5C00889D8D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B80BB02BF61D5C00889D8D /* LoginView.swift */; };
 		75B80BB32BF652AE00889D8D /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B80BB22BF652AE00889D8D /* RegisterView.swift */; };
 		75B80BB52BF652B800889D8D /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B80BB42BF652B800889D8D /* ForgotPasswordView.swift */; };
@@ -105,7 +108,10 @@
 		7590C7042BF4F630003F5F5C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		7590C7062BF4F684003F5F5C /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		7590C73D2BF50A1F003F5F5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7596F99B2BFF9B7D00578546 /* ProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreen.swift; sourceTree = "<group>"; };
+		75A790062C00905C0002463F /* AllRecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRecipesView.swift; sourceTree = "<group>"; };
+		75A790082C00937D0002463F /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
+		75A7900A2C0093D40002463F /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
+		75A7900C2C00A0DA0002463F /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		75B80BB02BF61D5C00889D8D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		75B80BB22BF652AE00889D8D /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		75B80BB42BF652B800889D8D /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
@@ -227,7 +233,6 @@
 				7590C7062BF4F684003F5F5C /* OnboardingView.swift */,
 				75F983FB2BFB836400FC7808 /* RecipesView.swift */,
 				75F983FD2BFB837B00FC7808 /* ProfileView.swift */,
-				7596F99B2BFF9B7D00578546 /* ProfileScreen.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -238,6 +243,7 @@
 				75C1DA912BF76A5600425D83 /* DarkButton.swift */,
 				75287F592BFA5FDE00FA0E23 /* StartButton.swift */,
 				756225342BFD40D300386CB1 /* ChipButton.swift */,
+				75A7900C2C00A0DA0002463F /* ButtonStyles.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -255,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				75F984072BFB8D3F00FC7808 /* RecipeDetailView.swift */,
+				75A790062C00905C0002463F /* AllRecipesView.swift */,
 			);
 			path = Recipe;
 			sourceTree = "<group>";
@@ -279,6 +286,8 @@
 				75C1DA9D2BF7C0DC00425D83 /* CountryListRow.swift */,
 				75287F572BFA5F4200FA0E23 /* OnboardingCardItem.swift */,
 				758E84DD2BFCD93400EA3B1B /* SectionHeader.swift */,
+				75A790082C00937D0002463F /* VisualEffectView.swift */,
+				75A7900A2C0093D40002463F /* RoundedCorner.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -528,6 +537,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75A7900B2C0093D40002463F /* RoundedCorner.swift in Sources */,
 				75F983FC2BFB836400FC7808 /* RecipesView.swift in Sources */,
 				75C1DA9C2BF7B1DD00425D83 /* BaseViewModel.swift in Sources */,
 				758E84DA2BFC9A2C00EA3B1B /* RecipeViewModel.swift in Sources */,
@@ -542,23 +552,25 @@
 				75287F5A2BFA5FDE00FA0E23 /* StartButton.swift in Sources */,
 				7590C6D42BF4A1F3003F5F5C /* AuthViewModel.swift in Sources */,
 				75C1DA982BF7A75B00425D83 /* Country.swift in Sources */,
+				75A790092C00937D0002463F /* VisualEffectView.swift in Sources */,
 				75C1DA962BF76FCF00425D83 /* PasswordTextField.swift in Sources */,
 				75287F542BFA5C2400FA0E23 /* OnboardingItem.swift in Sources */,
 				75C4F8222BF3A4FA00DD7B0E /* IngredientCategory.swift in Sources */,
 				758E84DE2BFCD93400EA3B1B /* SectionHeader.swift in Sources */,
 				75C1DA922BF76A5600425D83 /* DarkButton.swift in Sources */,
 				75B80BB12BF61D5C00889D8D /* LoginView.swift in Sources */,
-				7596F99C2BFF9B7D00578546 /* ProfileScreen.swift in Sources */,
 				757A964E2BFDC76100D1E8D7 /* PopularRecipeCard.swift in Sources */,
 				75F983FA2BFB81C900FC7808 /* TabScreenView.swift in Sources */,
 				75F9840C2BFB962C00FC7808 /* CustomTabBarView.swift in Sources */,
 				75B80BB52BF652B800889D8D /* ForgotPasswordView.swift in Sources */,
 				75C4F8202BF3A4B200DD7B0E /* Ingredient.swift in Sources */,
+				75A790072C00905D0002463F /* AllRecipesView.swift in Sources */,
 				757A96502BFE55FE00D1E8D7 /* UserViewModel.swift in Sources */,
 				75C4F7E42BF369C100DD7B0E /* FoodRecipeApp.swift in Sources */,
 				75C1DA9E2BF7C0DC00425D83 /* CountryListRow.swift in Sources */,
 				756225372BFD423400386CB1 /* ChipViewModel.swift in Sources */,
 				75F983FE2BFB837B00FC7808 /* ProfileView.swift in Sources */,
+				75A7900D2C00A0DA0002463F /* ButtonStyles.swift in Sources */,
 				75F9840E2BFB966500FC7808 /* Tab.swift in Sources */,
 				75287F562BFA5C8B00FA0E23 /* OnboardingItemData.swift in Sources */,
 				75C1DAA92BF7C9A700425D83 /* Extensions.swift in Sources */,

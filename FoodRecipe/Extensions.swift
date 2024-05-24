@@ -15,3 +15,19 @@ extension Image {
         self = Image(uiImage: uiImage)
     }
 }
+
+extension View {
+    func fontBold(color: Color = .black, size: CGFloat) -> some View {
+        foregroundColor(color).font(.custom("Circe-Bold", size: size))
+    }
+
+    func fontRegular(color: Color = .black, size: CGFloat) -> some View {
+        foregroundColor(color).font(.custom("Circe", size: size))
+    }
+}
+
+extension View {
+    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+        clipShape(RoundedCorner(radius: radius, corners: corners))
+    }
+}

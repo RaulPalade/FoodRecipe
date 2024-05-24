@@ -10,13 +10,12 @@ import SwiftUI
 import UIKit
 
 class ProfileScreenViewModel: ObservableObject {
-    
 }
 
 struct ProfileScreen: View {
     var avatarImage: String = "profileAvatar"
     var userName: String = "Alisa Millford"
-    
+
     @Environment(\.presentationMode) var presentationMode
     @State var progress: CGFloat = 0
     private let minHeight = 110.0
@@ -68,7 +67,7 @@ struct ProfileScreen: View {
                 .clipShape(RoundedRectangle(cornerRadius: 6.0))
 
             Text(userName)
-                .fontRegular(color: .appDarkGray, size: 17)
+                .fontRegular(color: .gray, size: 17)
         }
     }
 
@@ -98,7 +97,6 @@ struct ProfileScreen: View {
                         .foregroundColor(.white.opacity(0.2))
                 }
 
-                
                 ZStack(alignment: .leading) {
                     VisualEffectView(effect: UIBlurEffect(style: .regular))
                         .mask(Rectangle().cornerRadius(40, corners: [.topLeft, .topRight]))
@@ -115,7 +113,7 @@ struct ProfileScreen: View {
                         .padding(.leading, 24.0)
                         .padding(.top, 10.0)
                         .opacity(1 - max(0, min(1, (progress - 0.75) * 4.0)))
-                    
+
                     smallHeader
                         .padding(.leading, 85.0)
                         .opacity(progress)
@@ -130,11 +128,10 @@ struct ProfileScreen: View {
         VStack {
             HStack {
                 VStack(alignment: .leading, spacing: 20) {
-                    
                     HStack(content: {
                         Text("Placeholder")
                     })
-                    
+
                     Color.clear.frame(height: 100)
                 }
                 .padding(.horizontal, 24)
@@ -146,88 +143,6 @@ struct ProfileScreen: View {
         HStack(content: {
             /*@START_MENU_TOKEN@*/Text("Placeholder")/*@END_MENU_TOKEN@*/
         })
-    }
-}
-
-// THIS
-struct VisualEffectView: UIViewRepresentable {
-    var effect: UIVisualEffect?
-
-    func makeUIView(context: UIViewRepresentableContext<Self>) -> UIVisualEffectView { UIVisualEffectView() }
-    func updateUIView(_ uiView: UIVisualEffectView, context: UIViewRepresentableContext<Self>) { uiView.effect = effect }
-}
-
-// THIS
-struct CircleButtonStyle: ButtonStyle {
-    var imageName: String
-    var foreground = Color.black
-    var background = Color.white
-    var width: CGFloat = 40
-    var height: CGFloat = 40
-
-    func makeBody(configuration: Configuration) -> some View {
-        Circle()
-            .fill(background)
-            .overlay(Image(systemName: imageName)
-                .resizable()
-                .scaledToFit()
-                .foregroundColor(foreground)
-                .padding(12))
-            .frame(width: width, height: height)
-    }
-}
-
-// HEX
-extension Color {
-    static func hex(_ hex: String) -> Color {
-        guard let uiColor = UIColor(named: hex) else {
-            return Color.red
-        }
-        return Color(uiColor)
-    }
-}
-
-// THIS
-extension Color {
-    static let appDarkGray = Color.hex("#0C0C0C")
-    static let appGray = Color.hex("#0C0C0C").opacity(0.8)
-    static let appLightGray = Color.hex("#0C0C0C").opacity(0.4)
-    static let appYellow = Color.hex("#FFAC0C")
-
-    // Booking
-    static let appRed = Color.hex("#F62154")
-    static let appBookingBlue = Color.hex("#1874E0")
-
-    // Profile
-    static let appProfileBlue = Color.hex("#374BFE")
-}
-
-// THIS
-extension View {
-    func fontBold(color: Color = .black, size: CGFloat) -> some View {
-        foregroundColor(color).font(.custom("Circe-Bold", size: size))
-    }
-
-    func fontRegular(color: Color = .black, size: CGFloat) -> some View {
-        foregroundColor(color).font(.custom("Circe", size: size))
-    }
-}
-
-// THIS
-struct RoundedCorner: Shape {
-    var radius: CGFloat = .infinity
-    var corners: UIRectCorner = .allCorners
-
-    func path(in rect: CGRect) -> Path {
-        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-        return Path(path.cgPath)
-    }
-}
-
-// THIS
-extension View {
-    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
-        clipShape(RoundedCorner(radius: radius, corners: corners))
     }
 }
 

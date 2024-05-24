@@ -7,12 +7,9 @@
 
 import SwiftUI
 
-struct VisualEffectView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+struct VisualEffectView: UIViewRepresentable {
+    var effect: UIVisualEffect?
 
-#Preview {
-    VisualEffectView()
+    func makeUIView(context: UIViewRepresentableContext<Self>) -> UIVisualEffectView { UIVisualEffectView() }
+    func updateUIView(_ uiView: UIVisualEffectView, context: UIViewRepresentableContext<Self>) { uiView.effect = effect }
 }
