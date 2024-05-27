@@ -287,21 +287,10 @@ struct RecipeDetailView: View {
 
     private func otherRecipesOfAuthor() -> some View {
         VStack(alignment: .leading, content: {
-            HStack(content: {
-                Text("Related Recipes")
-                    .font(.custom("Cabin-Regular", size: 20))
-                    .foregroundColor(Color("PrimaryDarkColor"))
-                    .bold()
-                Spacer()
-
-                NavigationLink(destination: AllRecipesView()) {
-                    Text("See All")
-                        .font(.custom("Cabin-Regular", size: 18))
-                        .foregroundColor(Color("PrimaryLightColor"))
-                        .bold()
-                }
-
-            })
+            Text("Related Recipes")
+                .font(.custom("Cabin-Regular", size: 20))
+                .foregroundColor(Color("PrimaryDarkColor"))
+                .bold()
 
             LazyVGrid(columns: [
                 GridItem(.flexible(), spacing: 16),

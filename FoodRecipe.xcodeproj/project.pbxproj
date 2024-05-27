@@ -15,6 +15,7 @@
 		756225352BFD40D300386CB1 /* ChipButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756225342BFD40D300386CB1 /* ChipButton.swift */; };
 		756225372BFD423400386CB1 /* ChipViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756225362BFD423400386CB1 /* ChipViewModel.swift */; };
 		756225392BFD424A00386CB1 /* Chip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756225382BFD424A00386CB1 /* Chip.swift */; };
+		757103F42C04C5F00041D143 /* MyFavCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757103F32C04C5F00041D143 /* MyFavCard.swift */; };
 		757A964E2BFDC76100D1E8D7 /* PopularRecipeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757A964D2BFDC76100D1E8D7 /* PopularRecipeCard.swift */; };
 		757A96502BFE55FE00D1E8D7 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757A964F2BFE55FE00D1E8D7 /* UserViewModel.swift */; };
 		758E84DA2BFC9A2C00EA3B1B /* RecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758E84D92BFC9A2C00EA3B1B /* RecipeViewModel.swift */; };
@@ -99,6 +100,7 @@
 		756225342BFD40D300386CB1 /* ChipButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipButton.swift; sourceTree = "<group>"; };
 		756225362BFD423400386CB1 /* ChipViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipViewModel.swift; sourceTree = "<group>"; };
 		756225382BFD424A00386CB1 /* Chip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chip.swift; sourceTree = "<group>"; };
+		757103F32C04C5F00041D143 /* MyFavCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavCard.swift; sourceTree = "<group>"; };
 		757A964D2BFDC76100D1E8D7 /* PopularRecipeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularRecipeCard.swift; sourceTree = "<group>"; };
 		757A964F2BFE55FE00D1E8D7 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		758E84D92BFC9A2C00EA3B1B /* RecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModel.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 			children = (
 				758E84DF2BFCDF3500EA3B1B /* FeaturedCard.swift */,
 				757A964D2BFDC76100D1E8D7 /* PopularRecipeCard.swift */,
+				757103F32C04C5F00041D143 /* MyFavCard.swift */,
 			);
 			path = Recipe;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				757103F42C04C5F00041D143 /* MyFavCard.swift in Sources */,
 				75A7900B2C0093D40002463F /* RoundedCorner.swift in Sources */,
 				75F983FC2BFB836400FC7808 /* RecipesView.swift in Sources */,
 				75C1DA9C2BF7B1DD00425D83 /* BaseViewModel.swift in Sources */,

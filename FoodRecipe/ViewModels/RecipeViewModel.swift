@@ -14,6 +14,7 @@ class RecipeViewModel: ObservableObject {
     let recipesRef: CollectionReference
 
     @Published var recipes: [Recipe] = []
+    @Published var myFavRecipes: [Recipe] = []
     @Published var filteredRecipes: [Recipe] = []
     @Published var recipesByAuthor: [Recipe] = []
     @Published var errorMessage: String? = nil
@@ -135,10 +136,17 @@ class RecipeViewModel: ObservableObject {
     }
 
     func filterRecipesByAuthor(by author: String?) {
-        print(filterRecipesByAuthor)
         if let author = author, !author.isEmpty {
             recipesByAuthor = recipes.filter { recipe in
                 recipe.author.authorId == author
+            }
+        }
+    }
+
+    func filterMyFavRecipes(by myId: String?) {
+        if let myId = myId, !myId.isEmpty {
+            myFavRecipes = recipes.filter { recipe in
+                recipe.author.authorId == myId
             }
         }
     }

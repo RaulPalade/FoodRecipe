@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TabScreenView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var recipeViewModel: RecipeViewModel
 
     // State property for selected tab - keeps of what tab is selected
     @State private var selectedtab: Tab = .home
@@ -35,6 +36,9 @@ struct TabScreenView: View {
                 ProfileView()
                     .tabItem { Image(systemName: "house") }
                     .tag(Tab.profile)
+                    .onAppear(perform: {
+                        recipeViewModel.filterMyFavRecipes(by: authViewModel.currentUser?.id)
+                    })
             }
 
             CustomTabBarView(selectedTab: $selectedtab)
