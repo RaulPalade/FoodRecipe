@@ -29,7 +29,7 @@ struct TabScreenView: View {
                     .tabItem { Image(systemName: "house") }
                     .tag(Tab.home)
 
-                RecipesView()
+                AllRecipesView()
                     .tabItem { Image(systemName: "house") }
                     .tag(Tab.recipes)
 
