@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FeaturedCard: View {
-    var recipe: Recipe
+    var recipe: RecipeViewData
 
     static let color0 = Color(red: 10 / 255, green: 97 / 255, blue: 102 / 255)
     static let color1 = Color(red: 112 / 255, green: 185 / 255, blue: 190 / 255)
@@ -65,7 +65,7 @@ struct FeaturedCard: View {
                     .multilineTextAlignment(.leading)
 
                 HStack(content: {
-                    Image("profilePic")
+                    Image(uiImage: recipe.author.image)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 20, height: 20)

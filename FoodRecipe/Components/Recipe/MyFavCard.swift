@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct MyFavCard: View {
-    var recipe: Recipe
+    var recipe: RecipeViewData
     @State var favourite: Bool
     var setFavourite: () -> Void
 
     var body: some View {
         VStack {
             ZStack {
-                Image("foodCardBg")
+                Image(uiImage: recipe.image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .cornerRadius(20)
@@ -47,7 +47,7 @@ struct MyFavCard: View {
 
             HStack(content: {
                 HStack(content: {
-                    Image("profilePic")
+                    Image(uiImage: recipe.author.image)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 20, height: 20)

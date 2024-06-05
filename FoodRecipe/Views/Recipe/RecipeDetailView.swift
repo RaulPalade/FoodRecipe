@@ -15,9 +15,8 @@ enum TabMenu: String, CaseIterable, Identifiable {
 }
 
 struct RecipeDetailView: View {
-    var recipe: Recipe
+    var recipe: RecipeViewData
     var isFavourite: Bool
-    var avatarImage: String = "foodBgPortrait"
     @EnvironmentObject var recipeViewModel: RecipeViewModel
 
     @Environment(\.presentationMode) var presentationMode
@@ -71,7 +70,7 @@ struct RecipeDetailView: View {
 
     private var smallHeader: some View {
         HStack(spacing: 12) {
-            Image(avatarImage)
+            Image(uiImage: recipe.image)
                 .resizable()
                 .frame(width: 40, height: 40)
                 .clipShape(RoundedRectangle(cornerRadius: 6))
@@ -85,7 +84,7 @@ struct RecipeDetailView: View {
 
     private func largeHeader(progress: CGFloat) -> some View {
         ZStack {
-            Image(avatarImage)
+            Image(uiImage: recipe.image)
                 .resizable()
                 .scaledToFill()
                 .frame(height: maxHeight)
@@ -164,7 +163,7 @@ struct RecipeDetailView: View {
                     if selectedTab == .ingredients {
                         ForEach(recipe.ingredients.indices, id: \.self) { index in
                             let ingredient = recipe.ingredients[index]
-                            ingredientCard(image: ingredient.imageUrl, title: ingredient.name, quantity: ingredient.quantity)
+                            ingredientCard(title: ingredient.name, quantity: ingredient.quantity)
                         }
                     } else if selectedTab == .instructions {
                         ForEach(recipe.instructions.indices, id: \.self) { index in
@@ -219,7 +218,7 @@ struct RecipeDetailView: View {
         }).frame(maxWidth: .infinity, alignment: .leading)
     }
 
-    private func ingredientCard(image: String, title: String, quantity: String) -> some View {
+    private func ingredientCard(title: String, quantity: String) -> some View {
         HStack(content: {
             Image("foodForCard")
                 .resizable()
@@ -256,14 +255,14 @@ struct RecipeDetailView: View {
         }).frame(maxWidth: .infinity, alignment: .leading)
     }
 
-    private func creatorSection(author: RecipeAuthor) -> some View {
+    private func creatorSection(author: RecipeAuthorViewData) -> some View {
         VStack(alignment: .leading, content: {
             Text("Creator")
                 .font(.custom("Cabin-Regular", size: 20))
                 .foregroundColor(Color("PrimaryDarkColor"))
                 .bold()
             HStack(content: {
-                Image("profilePic")
+                Image(uiImage: recipe.author.image)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 60, height: 60)
@@ -277,7 +276,7 @@ struct RecipeDetailView: View {
                         .font(.custom("Cabin-Regular", size: 16))
                         .foregroundColor(Color("PrimaryDarkColor"))
                         .bold()
-                    Text(author.description)
+                    Text(author.about)
                         .font(.custom("Cabin-Regular", size: 16))
                         .foregroundColor(Color("PrimaryDarkColor"))
                 })
@@ -305,7 +304,7 @@ struct RecipeDetailView: View {
     private func authorRecipesCard() -> some View {
         VStack {
             ZStack {
-                Image("foodCardBg")
+                Image(uiImage: recipe.image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .cornerRadius(20)

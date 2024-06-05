@@ -10,5 +10,4 @@ import Foundation
 struct Ingredient: Identifiable, Decodable {
     let id: String
     let name: String
-    let imageUrl: String
 }

@@ -7,15 +7,15 @@
 
 import SwiftUI
 
-struct PopularRecipeCard: View {    
-    var recipe: Recipe
+struct PopularRecipeCard: View {
+    var recipe: RecipeViewData
     @State var favourite: Bool
     var setFavourite: () -> Void
 
     var body: some View {
         VStack {
             ZStack {
-                Image("foodCardBg")
+                Image(uiImage: recipe.image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .cornerRadius(20)
@@ -44,6 +44,8 @@ struct PopularRecipeCard: View {
                 .bold()
                 .frame(maxWidth: .infinity, alignment: .center)
                 .multilineTextAlignment(.center)
+                .lineLimit(1)
+                .padding(.horizontal, 8)
 
             HStack(content: {
                 Image(systemName: "flame")
@@ -65,12 +67,12 @@ struct PopularRecipeCard: View {
             .padding(.top, 4)
             .padding(.bottom, 12)
         }
-        .frame(width: UIScreen.main.bounds.width / 1.7)
-        .background(.white)
-        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-        .shadow(color: Color.primary.opacity(0.2), radius: 10, x: 0, y: 0)
+        .background(Color.white)
+        .cornerRadius(20)
+        .shadow(radius: 5)
     }
 }
+
 
 #Preview {
     PopularRecipeCard(recipe: recipePreviewData, favourite: true, setFavourite: {})

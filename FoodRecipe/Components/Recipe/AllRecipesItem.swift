@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct AllRecipesItem: View {
-    var recipe: Recipe
+    var recipe: RecipeViewData
     
     var body: some View {
         HStack(content: {
-            Image("foodCardBg")
+            Image(uiImage: recipe.image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .cornerRadius(16)
@@ -24,7 +24,7 @@ struct AllRecipesItem: View {
                     .foregroundColor(Color("PrimaryDarkColor"))
                     .bold()
                 HStack(content: {
-                    Image("profilePic")
+                    Image(uiImage: recipe.author.image)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 20, height: 20)

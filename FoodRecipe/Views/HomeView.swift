@@ -47,7 +47,6 @@ struct HomeView: View {
                                 }
                             }
                         }
-                        .padding(.bottom, 8)
 
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 20) {
@@ -63,6 +62,7 @@ struct HomeView: View {
                                             setFavourite: { addRecipeToFavourite(recipeId: recipe.id)
                                             }
                                         )
+                                        .frame(width: UIScreen.main.bounds.width / 1.8)
                                     }
                                 }
                             }.padding()

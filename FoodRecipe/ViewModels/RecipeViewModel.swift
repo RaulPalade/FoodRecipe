@@ -8,15 +8,16 @@ import Combine
 import Firebase
 import FirebaseFirestore
 import Foundation
+import SwiftUI
 
 class RecipeViewModel: ObservableObject {
     let db: Firestore
     let recipesRef: CollectionReference
 
-    @Published var recipes: [Recipe] = []
-    @Published var myFavRecipes: [Recipe] = []
-    @Published var filteredRecipes: [Recipe] = []
-    @Published var recipesByAuthor: [Recipe] = []
+    @Published var recipes: [RecipeViewData] = []
+    @Published var myFavRecipes: [RecipeViewData] = []
+    @Published var filteredRecipes: [RecipeViewData] = []
+    @Published var recipesByAuthor: [RecipeViewData] = []
     @Published var errorMessage: String? = nil
     @Published var isLoading: Bool = true
 
@@ -29,11 +30,12 @@ class RecipeViewModel: ObservableObject {
     }
 
     func fetchRecipes() {
-        let queryPublisher = Future<[Recipe], Error> { promise in
+        let queryPublisher = Future<[RecipeViewData], Error> { promise in
             Task {
                 do {
                     let recipes = try await self.getRecipes()
-                    promise(.success(recipes))
+                    let recipeViewDataList = try await self.loadImages(for: recipes)
+                    promise(.success(recipeViewDataList))
                 } catch {
                     promise(.failure(error))
                 }
@@ -75,7 +77,20 @@ class RecipeViewModel: ObservableObject {
                let rating = data["rating"] as? Double,
                let time = data["time"] as? String,
                let imageUrl = data["imageUrl"] as? String,
+               let ingredientsData = data["ingredients"] as? [[String: Any]],
                let createdAt = data["createdAt"] as? String {
+                // Conversione manuale degli ingredienti
+                var ingredients: [RecipeIngredient] = []
+                for ingredientData in ingredientsData {
+                    if let name = ingredientData["name"] as? String,
+                       let quantity = ingredientData["quantity"] as? String {
+                        let ingredient = RecipeIngredient(name: name, quantity: quantity)
+                        ingredients.append(ingredient)
+                    } else {
+                        print("Error: Missing required fields in ingredient data.")
+                    }
+                }
+
                 let nutrition = Nutrition(
                     calories: nutritionData["calories"] ?? 0,
                     carbs: nutritionData["carbs"] ?? 0,
@@ -86,16 +101,16 @@ class RecipeViewModel: ObservableObject {
                 let author = RecipeAuthor(
                     authorId: authorData["authorId"] ?? "",
                     name: authorData["name"] ?? "",
-                    description: authorData["description"] ?? "",
+                    about: authorData["about"] ?? "",
                     imageUrl: authorData["imageUrl"] ?? ""
                 )
 
-                var recipe = Recipe(
+                let recipe = Recipe(
                     id: documentID,
                     name: name,
                     description: description,
                     category: category,
-                    ingredients: [],
+                    ingredients: ingredients,
                     instructions: instructions,
                     nutrition: nutrition,
                     author: author,
@@ -105,8 +120,6 @@ class RecipeViewModel: ObservableObject {
                     imageUrl: imageUrl
                 )
 
-                let ingredients = try await fetchIngredients(for: documentID)
-                recipe.ingredients = ingredients
                 fetchedRecipes.append(recipe)
             } else {
                 print("Error: Missing required fields in document data.")
@@ -116,12 +129,49 @@ class RecipeViewModel: ObservableObject {
         return fetchedRecipes
     }
 
-    private func fetchIngredients(for recipeId: String) async throws -> [RecipeIngredient] {
-        let ingredientsRef = recipesRef.document(recipeId).collection("ingredients")
-        let querySnapshot = try await ingredientsRef.getDocuments()
-        return querySnapshot.documents.compactMap { document in
-            try? document.data(as: RecipeIngredient.self)
+    func loadImages(for recipes: [Recipe]) async throws -> [RecipeViewData] {
+        var recipeViewDataList: [RecipeViewData] = []
+
+        for recipe in recipes {
+            guard let recipeImageUrl = URL(string: recipe.imageUrl),
+                  let authorImageUrl = URL(string: recipe.author.imageUrl) else {
+                throw URLError(.badURL)
+            }
+
+            async let recipeImageData = URLSession.shared.data(from: recipeImageUrl)
+            async let authorImageData = URLSession.shared.data(from: authorImageUrl)
+
+            let (recipeData, _) = try await recipeImageData
+            let (authorData, _) = try await authorImageData
+
+            if let recipeImage = UIImage(data: recipeData),
+               let authorImage = UIImage(data: authorData) {
+                let authorViewData = RecipeAuthorViewData(
+                    authorId: recipe.author.authorId,
+                    name: recipe.author.name,
+                    about: recipe.author.about,
+                    image: authorImage
+                )
+
+                let recipeViewData = RecipeViewData(
+                    id: recipe.id,
+                    name: recipe.name,
+                    description: recipe.description,
+                    category: recipe.category,
+                    ingredients: recipe.ingredients,
+                    instructions: recipe.instructions,
+                    nutrition: recipe.nutrition,
+                    author: authorViewData,
+                    rating: recipe.rating,
+                    time: recipe.time,
+                    createdAt: recipe.createdAt,
+                    image: recipeImage
+                )
+                recipeViewDataList.append(recipeViewData)
+            }
         }
+
+        return recipeViewDataList
     }
 
     func filterRecipesByCategory(by category: String?) {

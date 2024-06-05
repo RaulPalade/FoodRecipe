@@ -1,14 +1,15 @@
 //
-//  Recipe.swift
+//  RecipeViewData.swift
 //  FoodRecipe
 //
-//  Created by Raul Palade on 14/05/24.
+//  Created by Raul Palade on 05/06/24.
 //
 
-import FirebaseFirestore
 import Foundation
 
-struct Recipe: Identifiable, Decodable {
+import SwiftUI
+
+struct RecipeViewData: Identifiable {
     let id: String
     let name: String
     let description: String
@@ -16,21 +17,16 @@ struct Recipe: Identifiable, Decodable {
     var ingredients: [RecipeIngredient]
     let instructions: [String]
     let nutrition: Nutrition
-    let author: RecipeAuthor
+    let author: RecipeAuthorViewData
     let rating: Double
     let time: String
     let createdAt: String
-    let imageUrl: String
+    let image: UIImage
 }
 
-struct RecipeAuthor: Decodable {
+struct RecipeAuthorViewData {
     let authorId: String
     let name: String
     let about: String
-    let imageUrl: String
-}
-
-struct RecipeIngredient: Decodable {
-    let name: String
-    let quantity: String
+    let image: UIImage
 }
